@@ -14,6 +14,9 @@ use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Password;
 
+/**
+ * @group Authentication
+ */
 class AuthController extends Controller
 {
     use ApiResponseTrait;
@@ -25,6 +28,12 @@ class AuthController extends Controller
         $this->authRepository = $authRepository;
     }
 
+    /**
+     * Register
+     *
+     * @param RegisterRequest $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function register(RegisterRequest $request)
     {
         $user = $this->authRepository->register($request->validated());
@@ -33,6 +42,12 @@ class AuthController extends Controller
         return $this->successMessage(new LoginResource($user));
     }
 
+    /**
+     * Login
+     *
+     * @param LoginRequest $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function login(LoginRequest $request)
     {
         $user = $this->authRepository->login($request->validated());
@@ -40,6 +55,12 @@ class AuthController extends Controller
         return $this->successMessage(new LoginResource($user));
     }
 
+    /**
+     * Forgot password
+     *
+     * @param ForgotPasswordRequest $request
+     * @return \Illuminate\Http\JsonResponse|void
+     */
     public function forgotPassword(ForgotPasswordRequest $request)
     {
         $status = Password::sendResetLink($request->only('email'));
@@ -51,6 +72,12 @@ class AuthController extends Controller
         }
     }
 
+    /**
+     * Social media login
+     *
+     * @param SocialLoginRequest $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function socialLogin(SocialLoginRequest $request)
     {
         $user = $this->authRepository->socialLogin($request->validated());
@@ -58,6 +85,12 @@ class AuthController extends Controller
         return $this->successMessage(new LoginResource($user), trans('api/auth.login_success'));
     }
 
+    /**
+     * Logout
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function logout(Request $request)
     {
         $this->authRepository->logout();
