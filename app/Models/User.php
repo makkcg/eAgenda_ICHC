@@ -21,6 +21,11 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'phone_number',
+        'image',
+        'social_id',
+        'access_token',
+        'device_token',
     ];
 
     /**
@@ -41,4 +46,9 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function getImageAttribute()
+    {
+        return !empty($this->attributes['image']) ? asset($this->attributes['image']) : '';
+    }
 }
