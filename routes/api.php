@@ -22,3 +22,10 @@ Route::group(['prefix' => 'auth'], function () {
     Route::post('/social-login', [AuthController::class, 'socialLogin']);
     Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth:sanctum');
 });
+
+Route::group(['middleware' => 'auth:sanctum', 'prefix' => 'tags'], function () {
+    Route::get('/', [TagController::class, 'index']);
+    Route::post('/', [TagController::class, 'store']);
+    Route::post('/{tag}', [TagController::class, 'update']);
+    Route::delete('/{tag}', [TagController::class, 'destroy']);
+});
