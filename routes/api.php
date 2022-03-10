@@ -43,3 +43,7 @@ Route::group(['middleware' => 'auth:sanctum', 'prefix' => 'lists/{taskList}/task
     Route::post('/{task}', [TaskController::class, 'update']);
     Route::delete('/{task}', [TaskController::class, 'destroy']);
 });
+
+Route::group(['middleware' => 'auth:sanctum', 'prefix' => 'tasks/{task}'], function () {
+    Route::post('/files', [TaskController::class, 'addFiles']);
+});

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Api\TaskFilesRequest;
 use App\Http\Requests\Api\TaskRequest;
 use App\Http\Resources\TaskResource;
 use App\Models\Task;
@@ -90,6 +91,22 @@ class TaskController extends Controller
     public function destroy(TaskList $taskList, Task $task)
     {
         $this->taskRepository->delete($taskList, $task);
+
+        return $this->successMessage(json_decode('{}'), '', 204);
+    }
+
+    /**
+     *  Add files
+     *
+     * Add files to the specified task.
+     *
+     * @param TaskFilesRequest $request
+     * @param Task $task
+     * @return \Illuminate\Http\Response
+     */
+    public function addFiles(TaskFilesRequest $request, Task $task)
+    {
+        $this->taskRepository->addFiles($task, $request->all()['files']);
 
         return $this->successMessage(json_decode('{}'), '', 204);
     }

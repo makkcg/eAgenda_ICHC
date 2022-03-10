@@ -58,4 +58,13 @@ class TaskRepository
         }
         throw new HttpResponseException($this->failureMessage(json_decode('{}'), trans('api/main.access_denied'), 403));
     }
+
+    public function addFiles($task, $files)
+    {
+        $this->checkIfTaskOwner($task);
+        
+        if (!empty($files)) {
+            self::uploadFiles($files, $task, 'tasks/');
+        }
+    }
 }
