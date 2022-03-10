@@ -24,6 +24,10 @@ class TaskRepository
         $this->checkIfTaskListOwner($taskList);
         $task = Task::create($data);
 
+        if (!empty($data['files'])) {
+            self::uploadFiles($data['files'], $task, 'tasks/');
+        }
+
         return $task;
     }
 

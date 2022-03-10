@@ -3,7 +3,6 @@
 namespace App\Traits;
 
 
-use App\Models\Image;
 use Illuminate\Support\Facades\DB;
 
 trait FileTrait
@@ -21,7 +20,7 @@ trait FileTrait
         return $fullPath . $fileName;
     }
 
-    private static function uploadFiles($files, $model, $path = '', $table = 'images', $callable = 'imageable', $column = 'url')
+    private static function uploadFiles($files, $model, $path = '', $table = 'files', $callable = 'fileable', $column = 'url')
     {
         if (empty($files)) {
             return;

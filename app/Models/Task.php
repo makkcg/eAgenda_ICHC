@@ -23,4 +23,9 @@ class Task extends Model
     {
         return $this->belongsTo(TaskList::class);
     }
+
+    public function files()
+    {
+        return $this->morphMany(File::class, 'fileable');
+    }
 }

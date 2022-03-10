@@ -23,6 +23,7 @@ class TaskResource extends JsonResource
             'status' => $this->status,
             'in_calender' => $this->in_calender,
             'notes' => $this->notes,
+            'files' => FileResource::collection($this->files),
             'created_at' => $this->created_at->format('Y-m-d H:i:s'),
         ];
     }

@@ -30,6 +30,8 @@ class TaskRequest extends FormRequest
             'status' => 'nullable|in:0,1',
             'in_calender' => 'required|in:0,1',
             'notes' => 'nullable|string',
+
+            'files.*' => 'nullable|file|max:4096',
         ];
     }
 }
