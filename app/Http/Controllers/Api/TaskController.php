@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\TaskFilesRequest;
 use App\Http\Requests\Api\TaskRequest;
 use App\Http\Resources\TaskResource;
+use App\Models\File;
 use App\Models\Task;
 use App\Models\TaskList;
 use App\Repositories\Api\TaskRepository;
@@ -30,7 +31,7 @@ class TaskController extends Controller
      *
      * Display a listing of list's tasks.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function index(TaskList $taskList)
     {
@@ -49,7 +50,7 @@ class TaskController extends Controller
      *
      * @param TaskRequest $request
      * @param TaskList $taskList
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function store(TaskRequest $request, TaskList $taskList)
     {
@@ -68,7 +69,7 @@ class TaskController extends Controller
      * @param TaskRequest $request
      * @param TaskList $taskList
      * @param \App\Models\Task $task
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function update(TaskRequest $request,TaskList $taskList, Task $task)
     {
@@ -86,7 +87,7 @@ class TaskController extends Controller
      *
      * @param TaskList $taskList
      * @param \App\Models\Task $task
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function destroy(TaskList $taskList, Task $task)
     {
@@ -102,11 +103,27 @@ class TaskController extends Controller
      *
      * @param TaskFilesRequest $request
      * @param Task $task
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function addFiles(TaskFilesRequest $request, Task $task)
     {
-        $this->taskRepository->addFiles($task, $request->all()['files']);
+        $this->taskRepository->addTaskFiles($task, $request->all()['files']);
+
+        return $this->successMessage(json_decode('{}'), '', 204);
+    }
+
+    /**
+     * Delete file
+     *
+     * Remove the specified file from storage.
+     *
+     * @param Task $task
+     * @param File $file
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function deleteFile(Task $task, File $file)
+    {
+        $this->taskRepository->deleteTaskFile($task, $file);
 
         return $this->successMessage(json_decode('{}'), '', 204);
     }

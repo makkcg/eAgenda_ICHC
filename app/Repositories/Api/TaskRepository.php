@@ -59,12 +59,22 @@ class TaskRepository
         throw new HttpResponseException($this->failureMessage(json_decode('{}'), trans('api/main.access_denied'), 403));
     }
 
-    public function addFiles($task, $files)
+    public function addTaskFiles($task, $files)
     {
         $this->checkIfTaskOwner($task);
-        
+
         if (!empty($files)) {
             self::uploadFiles($files, $task, 'tasks/');
         }
+    }
+
+    public function deleteTaskFile($task, $file)
+    {
+        if ($task->id != $file->fileable_id) {
+            abort(404);
+        }
+        $this->checkIfTaskOwner($task);
+
+        self::deleteFiles($file);
     }
 }
