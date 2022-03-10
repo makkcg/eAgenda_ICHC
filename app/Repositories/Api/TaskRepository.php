@@ -37,12 +37,17 @@ class TaskRepository
         $data['task_list_id'] = $taskList->id;
         $task->update($data);
 
+        if (!empty($data['files'])) {
+            self::uploadFiles($data['files'], $task, 'tasks/');
+        }
+
         return $task;
     }
 
     public function delete($taskList, $task)
     {
         $this->checkIfTaskListOwner($taskList);
+        self::deleteFiles($task->files());
         $task->delete();
     }
 
@@ -75,6 +80,7 @@ class TaskRepository
         }
         $this->checkIfTaskOwner($task);
 
-        self::deleteFiles($file);
+        self::deleteFile($file->url);
+        $file->delete();
     }
 }
