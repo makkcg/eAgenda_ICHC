@@ -32,6 +32,7 @@ class TaskRequest extends FormRequest
             'notes' => 'nullable|string',
 
             'files.*' => 'nullable|file|max:4096',
+            'tags.*' => 'nullable|exists:tags,id',
         ];
     }
 }

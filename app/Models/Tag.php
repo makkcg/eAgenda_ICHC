@@ -14,4 +14,9 @@ class Tag extends Model
         'name',
         'color',
     ];
+
+    public function tasks()
+    {
+        return $this->morphToMany(Task::class, 'taggable');
+    }
 }

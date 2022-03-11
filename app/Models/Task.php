@@ -28,4 +28,9 @@ class Task extends Model
     {
         return $this->morphMany(File::class, 'fileable');
     }
+
+    public function tags()
+    {
+        return $this->morphToMany(Tag::class, 'taggable')->withTimestamps();
+    }
 }

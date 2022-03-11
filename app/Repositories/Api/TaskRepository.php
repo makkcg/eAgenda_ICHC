@@ -24,6 +24,10 @@ class TaskRepository
         $this->checkIfTaskListOwner($taskList);
         $task = Task::create($data);
 
+        if (!empty($data['tags'])) {
+            $task->tags()->sync($data['tags']);
+        }
+
         if (!empty($data['files'])) {
             self::uploadFiles($data['files'], $task, 'tasks/');
         }
@@ -37,6 +41,11 @@ class TaskRepository
         $data['task_list_id'] = $taskList->id;
         $task->update($data);
 
+        $task->tags()->detach();
+        if (!empty($data['tags'])) {
+            $task->tags()->sync($data['tags']);
+        }
+
         if (!empty($data['files'])) {
             self::uploadFiles($data['files'], $task, 'tasks/');
         }
@@ -48,6 +57,7 @@ class TaskRepository
     {
         $this->checkIfTaskListOwner($taskList);
         self::deleteFiles($task->files());
+        $task->tags()->detach();
         $task->delete();
     }
 
