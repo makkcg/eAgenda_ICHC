@@ -9,15 +9,11 @@ Route::middleware('guest:admin')->group(function () {
         ->name('login');
 
     Route::post('login', [Auth\AuthenticatedSessionController::class, 'store']);
-
-
 });
-Route::post('test', [Auth\AuthenticatedSessionController::class, 'destroy'])->name('test');
 
 Route::middleware('auth:admin')->group(function () {
     Route::post('logout', [Auth\AuthenticatedSessionController::class, 'destroy'])
         ->name('logout');
+
+    Route::get('/', HomeController::class)->name('home');
 });
-
-
-Route::get('/', HomeController::class)->name('home');
