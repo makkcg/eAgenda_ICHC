@@ -30,6 +30,8 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
+                        @include('sweetalert::alert')
+
                         <h1 class="m-0">@if(isset($pageTitle) && $pageTitle->isNotEmpty()) {{ $pageTitle }} @else {{ __('admin.dashboard') }} @endif</h1>
                     </div><!-- /.col -->
                 </div><!-- /.row -->

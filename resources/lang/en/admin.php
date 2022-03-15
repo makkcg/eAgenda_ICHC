@@ -8,11 +8,18 @@ return [
     'logout' => 'Log out',
 
     'add' => 'Add',
+    'added' => 'Added',
     'edit' => 'Edit',
+    'edited' => 'Edited',
     'delete' => 'Delete',
+    'deleted' => 'Deleted',
+    'update' => 'Update',
+    'updated' => 'Updated',
+    'successfully' => 'Successfully',
     'cancel' => 'Cancel',
     'confirm' => 'Confirm',
     'change' => 'Change',
+    'changed' => 'Changed',
     'upload' => 'Upload',
 
     'name' => 'Name',

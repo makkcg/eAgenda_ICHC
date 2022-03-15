@@ -35,7 +35,7 @@ class SettingController extends Controller
                 continue;
             }
             $setting->update(['value' => $value]);
-//            toast(trans('admin.settings').' '.trans('admin.updated').' '.trans('admin.successfully'),'success');
+            toast(trans('admin.settings').' '.trans('admin.updated').' '.trans('admin.successfully'),'success');
         }
         return back();
     }

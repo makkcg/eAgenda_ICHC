@@ -28,7 +28,9 @@ class ProfileController extends Controller
             self::deleteFile($admin->image);
             $data['image'] = self::uploadFile($data['image'], 'admins/');
         }
+
         $admin->update($data);
+        toast(trans('admin.profile').' '.trans('admin.updated').' '.trans('admin.successfully'),'success');
 
         return back();
     }
@@ -36,6 +38,7 @@ class ProfileController extends Controller
     public function changePassword(ChangePasswordRequest $request)
     {
         auth('admin')->user()->update(['password' => Hash::make($request->new_password)]);
+        toast(trans('admin.password').' '.trans('admin.changed').' '.trans('admin.successfully'),'success');
 
         return back();
     }
