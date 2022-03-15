@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\ChangePasswordRequest;
 use App\Http\Requests\Admin\UpdateProfileRequest;
 use App\Traits\FileTrait;
+use Illuminate\Support\Facades\Hash;
 
 class ProfileController extends Controller
 {
@@ -27,6 +29,13 @@ class ProfileController extends Controller
             $data['image'] = self::uploadFile($data['image'], 'admins/');
         }
         $admin->update($data);
+
+        return back();
+    }
+
+    public function changePassword(ChangePasswordRequest $request)
+    {
+        auth('admin')->user()->update(['password' => Hash::make($request->new_password)]);
 
         return back();
     }

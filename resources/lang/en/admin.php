@@ -12,6 +12,7 @@ return [
     'delete' => 'Delete',
     'cancel' => 'Cancel',
     'confirm' => 'Confirm',
+    'change' => 'Change',
     'upload' => 'Upload',
 
     'name' => 'Name',
