@@ -11,6 +11,16 @@ return [
     'edit' => 'Edit',
     'delete' => 'Delete',
     'cancel' => 'Cancel',
+    'confirm' => 'Confirm',
+    'upload' => 'Upload',
+
+    'name' => 'Name',
+    'email' => 'Email',
+    'phone_number' => 'Phone number',
+    'image' => 'Image',
+    'password' => 'Password',
+    'new_password' => 'New password',
 
     'settings' => 'Settings',
+    'profile' => 'Profile',
 ];

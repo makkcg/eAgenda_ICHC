@@ -2,7 +2,7 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="{{ route('admin.home') }}" class="brand-link">
-        <img src="{{ asset(getSetting('logo')) }}" alt="Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+        <img src="{{ asset(getSetting('logo')) }}" alt="Logo" class="brand-image elevation-3" style="opacity: .8; border-radius: 5px">
         <span class="brand-text font-weight-light">{{ env('APP_NAME') }}</span>
     </a>
 
@@ -11,10 +11,10 @@
         <!-- Sidebar user panel (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
             <div class="image">
-                <img src="{{ asset('admin-assets/dist/img/user2-160x160.jpg') }}" class="img-circle elevation-2" alt="User Image">
+                <img src="{{ asset(auth('admin')->user()->image ?? 'admin-assets/dist/img/user2-160x160.jpg') }}" style="max-height: 30px; width: auto" class="img-circle elevation-2" alt="User Image">
             </div>
             <div class="info">
-                <a href="#" class="d-block">Alexander Pierce</a>
+                <a href="{{ route('admin.profile.edit') }}" class="d-block">{{ auth('admin')->user()->name }}</a>
             </div>
         </div>
 

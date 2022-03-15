@@ -8,7 +8,7 @@
             <a href="{{ route('admin.home') }}" class="nav-link">{{ __('admin.home') }}</a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
-            <a href="#" class="nav-link">Contact</a>
+            <a href="{{ route('admin.profile.edit') }}" class="nav-link">{{ __('admin.profile') }}</a>
         </li>
     </ul>
 
