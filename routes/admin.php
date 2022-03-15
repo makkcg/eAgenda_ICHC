@@ -16,4 +16,7 @@ Route::middleware('auth:admin')->group(function () {
         ->name('logout');
 
     Route::get('/', HomeController::class)->name('home');
+
+    Route::get('/settings', [SettingController::class, 'edit'])->name('settings.edit');
+    Route::put('/settings', [SettingController::class, 'update'])->name('settings.update');
 });
