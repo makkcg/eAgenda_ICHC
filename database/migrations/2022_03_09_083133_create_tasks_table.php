@@ -26,7 +26,7 @@ class CreateTasksTable extends Migration
             $table->tinyInteger('notify');
             $table->tinyInteger('status');
             $table->tinyInteger('in_calender');
-            $table->text('notes');
+            $table->text('notes')->nullable();
 
             $table->timestamps();
         });
