@@ -51,4 +51,9 @@ class User extends Authenticatable
     {
         return !empty($this->attributes['image']) ? asset($this->attributes['image']) : '';
     }
+
+    public function tags()
+    {
+        return $this->hasMany(Tag::class);
+    }
 }

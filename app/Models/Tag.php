@@ -19,4 +19,9 @@ class Tag extends Model
     {
         return $this->morphToMany(Task::class, 'taggable');
     }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }
