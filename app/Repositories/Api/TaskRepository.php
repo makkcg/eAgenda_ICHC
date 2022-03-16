@@ -93,4 +93,9 @@ class TaskRepository
         self::deleteFile($file->url);
         $file->delete();
     }
+
+    public function changeStatus($task, $status)
+    {
+        $task->update(['status' => $status]);
+    }
 }

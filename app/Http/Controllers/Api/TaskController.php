@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\TaskFilesRequest;
 use App\Http\Requests\Api\TaskRequest;
+use App\Http\Requests\Api\TaskStatusRequest;
 use App\Http\Resources\TaskResource;
 use App\Models\File;
 use App\Models\Task;
@@ -124,6 +125,22 @@ class TaskController extends Controller
     public function deleteFile(Task $task, File $file)
     {
         $this->taskRepository->deleteTaskFile($task, $file);
+
+        return $this->successMessage(json_decode('{}'), '', 204);
+    }
+
+    /**
+     * Change status
+     *
+     * Change the status of the task.
+     *
+     * @param TaskStatusRequest $request
+     * @param Task $task
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function changeStatus(TaskStatusRequest $request, TaskList $taskList, Task $task)
+    {
+        $this->taskRepository->changeStatus($task, $request->status);
 
         return $this->successMessage(json_decode('{}'), '', 204);
     }

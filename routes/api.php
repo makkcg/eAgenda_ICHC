@@ -41,6 +41,7 @@ Route::group(['middleware' => 'auth:sanctum', 'prefix' => 'lists/{taskList}/task
     Route::get('/', [TaskController::class, 'index']);
     Route::post('/', [TaskController::class, 'store']);
     Route::post('/{task}', [TaskController::class, 'update']);
+    Route::post('/{task}/status', [TaskController::class, 'changeStatus']);
     Route::delete('/{task}', [TaskController::class, 'destroy']);
 });
 
