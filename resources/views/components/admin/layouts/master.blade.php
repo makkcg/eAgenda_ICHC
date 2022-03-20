@@ -14,6 +14,16 @@
     <!-- overlayScrollbars -->
     <link rel="stylesheet" href="{{ asset('admin-assets/plugins/overlayScrollbars/css/OverlayScrollbars.min.css') }}">
 
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <!-- Styles -->
+    <style>
+        body {
+            font-family: 'Nunito', sans-serif;
+        }
+    </style>
+
     @if(isset($styles) && $styles->isNotEmpty()) {{ $styles }} @endif
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
