@@ -17,11 +17,13 @@ Route::middleware('auth:admin')->group(function () {
 
     Route::get('/', HomeController::class)->name('home');
 
-    Route::get('/settings', [SettingController::class, 'edit'])->name('settings.edit');
+    Route::get('/settings', [SettingController::class, 'edit'])->name('settings.edit')->middleware('role_or_permission:super-admin|settings');
     Route::put('/settings', [SettingController::class, 'update'])->name('settings.update');
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::put('/profile', [ProfileController::class, 'update'])->name('profile.update');
 
     Route::post('/profile/password', [ProfileController::class, 'changePassword'])->name('profile.password');
+
+    Route::resource('/roles', RoleController::class)->except('show')->middleware('role_or_permission:super-admin|roles');
 });

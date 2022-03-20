@@ -31,4 +31,9 @@ return [
 
     'settings' => 'Settings',
     'profile' => 'Profile',
+
+    'role' => 'Role',
+    'roles' => 'Roles',
+    'permission' => 'Permission',
+    'permissions' => 'Permissions',
 ];
