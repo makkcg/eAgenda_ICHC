@@ -41,35 +41,39 @@
                         <p>{{ __('admin.dashboard') }}</p>
                     </a>
                 </li>
-{{--                <li class="nav-item">--}}
-{{--                    <a href="#" class="nav-link">--}}
-{{--                        <i class="nav-icon fas fa-edit"></i>--}}
-{{--                        <p>--}}
-{{--                            Forms--}}
-{{--                            <i class="fas fa-angle-left right"></i>--}}
-{{--                        </p>--}}
-{{--                    </a>--}}
-{{--                    <ul class="nav nav-treeview">--}}
-{{--                        <li class="nav-item">--}}
-{{--                            <a href="pages/forms/general.html" class="nav-link">--}}
-{{--                                <i class="far fa-circle nav-icon"></i>--}}
-{{--                                <p>General Elements</p>--}}
-{{--                            </a>--}}
-{{--                        </li>--}}
-{{--                        <li class="nav-item">--}}
-{{--                            <a href="pages/forms/advanced.html" class="nav-link">--}}
-{{--                                <i class="far fa-circle nav-icon"></i>--}}
-{{--                                <p>Advanced Elements</p>--}}
-{{--                            </a>--}}
-{{--                        </li>--}}
-{{--                    </ul>--}}
-{{--                </li>--}}
-                <li class="nav-item">
-                    <a href="{{ route('admin.settings.edit') }}" class="nav-link">
-                        <i class="fas fa-tools mr-2"></i>
-                        <p>{{ __('admin.settings') }}</p>
-                    </a>
-                </li>
+                @if(auth()->user()->hasRole('super-admin') || auth()->user()->can('roles'))
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="fas fa-list-ul mr-2"></i>
+                            <p>
+                                {{ __('admin.roles') }}
+                                <i class="fas fa-angle-left right"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{{ route('admin.roles.index') }}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>{{ __('admin.roles') }}</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ route('admin.roles.create') }}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>{{ __('admin.add') .' '. __('admin.role') }}</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                @endif
+                @if(auth()->user()->hasRole('super-admin') || auth()->user()->can('settings'))
+                    <li class="nav-item">
+                        <a href="{{ route('admin.settings.edit') }}" class="nav-link">
+                            <i class="fas fa-tools mr-2"></i>
+                            <p>{{ __('admin.settings') }}</p>
+                        </a>
+                    </li>
+                @endif
                 <li class="nav-item">
                     <form method="POST" id="logout-form" action="{{ route('admin.logout') }}">
                         @csrf
