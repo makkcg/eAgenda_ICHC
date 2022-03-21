@@ -20,10 +20,14 @@ Route::middleware('auth:admin')->group(function () {
     Route::get('/settings', [SettingController::class, 'edit'])->name('settings.edit')->middleware('role_or_permission:super-admin|settings');
     Route::put('/settings', [SettingController::class, 'update'])->name('settings.update');
 
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::put('/profile', [ProfileController::class, 'update'])->name('profile.update');
-
-    Route::post('/profile/password', [ProfileController::class, 'changePassword'])->name('profile.password');
+    Route::group(['prefix' => 'profile', 'as' => 'profile.'], function () {
+        Route::get('/', [ProfileController::class, 'edit'])->name('edit');
+        Route::put('/', [ProfileController::class, 'update'])->name('update');
+        Route::post('/password', [ProfileController::class, 'changePassword'])->name('password');
+    });
 
     Route::resource('/roles', RoleController::class)->except('show')->middleware('role_or_permission:super-admin|roles');
+
+    Route::resource('/admins', AdminController::class)->except('show')->middleware('role_or_permission:super-admin|admins');
+    Route::post('/admins/{admin}/password', [AdminController::class, 'changePassword'])->name('admins.password')->middleware('role_or_permission:super-admin|admins');
 });

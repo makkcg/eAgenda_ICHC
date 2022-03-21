@@ -1,8 +1,6 @@
 <x-admin.layouts.card>
-    <x-slot name="title">{{ __('admin.roles') }}</x-slot>
-
     <x-slot name="styles">
-{{--        <link rel="stylesheet" type="text/css" href="{{ asset('admin-assets/plugins/select2/select2.min.css') }}">--}}
+        <link rel="stylesheet" type="text/css" href="{{ asset('admin-assets/plugins/select2/select2.min.css') }}">
     </x-slot>
 
     <x-slot name="pageTitle">{{ __('admin.roles') }}</x-slot>

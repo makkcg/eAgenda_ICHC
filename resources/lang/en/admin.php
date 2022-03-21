@@ -22,6 +22,7 @@ return [
     'changed' => 'Changed',
     'upload' => 'Upload',
     'new' => 'New',
+    'choose' => 'Choose',
 
     'id' => 'ID',
     'title' => 'Title',
@@ -42,4 +43,6 @@ return [
     'permissions' => 'Permissions',
     'user' => 'User',
     'users' => 'Users',
+    'admin' => 'Admin',
+    'admins' => 'Admins',
 ];

@@ -1,12 +1,11 @@
 <?php
 
-namespace App\Http\Requests\Admin;
+namespace App\Http\Requests\Admin\Admin;
 
-use App\Rules\MatchOldPassword;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rules\Password;
 
-class UpdateProfileRequest extends FormRequest
+class StoreRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -27,8 +26,11 @@ class UpdateProfileRequest extends FormRequest
     {
         return [
             'name' => 'required|string|max:64',
-            'phone_number' => 'nullable|string|max:64',
-            'image' => 'nullable|image|mimes:jpeg,jpg,png|max:4096',
+            'email' => 'required|unique:admins,email',
+            'phone_number' => 'required',
+            'role' => 'required|exists:roles,name',
+            'password' => 'required|confirmed|min:8',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg|max:4096'
         ];
     }
 }

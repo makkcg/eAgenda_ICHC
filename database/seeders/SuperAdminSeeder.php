@@ -30,7 +30,7 @@ class SuperAdminSeeder extends Seeder
 
         Role::create([
             'name' => 'admin',
-            'guard_name' => 'web',
+            'guard_name' => 'admin',
         ]);
 
         Permission::insert([

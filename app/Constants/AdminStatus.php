@@ -4,14 +4,14 @@ namespace App\Constants;
 
 final class AdminStatus extends Constant
 {
+    const BANNED = 0;
     const ACTIVE = 1;
-    const BANNED = 2;
 
     public static function getList(): array
     {
         return [
-            self::ACTIVE => trans('admin.active'),
             self::BANNED => trans('admin.banned'),
+            self::ACTIVE => trans('admin.active'),
         ];
     }
 }

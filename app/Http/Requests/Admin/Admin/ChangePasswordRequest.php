@@ -1,12 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Admin;
+namespace App\Http\Requests\Admin\Admin;
 
-use App\Rules\MatchOldPassword;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rules\Password;
 
-class UpdateProfileRequest extends FormRequest
+class ChangePasswordRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,9 +24,7 @@ class UpdateProfileRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|string|max:64',
-            'phone_number' => 'nullable|string|max:64',
-            'image' => 'nullable|image|mimes:jpeg,jpg,png|max:4096',
+            'password' => 'required|confirmed|min:8',
         ];
     }
 }
