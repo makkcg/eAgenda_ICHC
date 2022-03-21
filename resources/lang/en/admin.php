@@ -21,8 +21,12 @@ return [
     'change' => 'Change',
     'changed' => 'Changed',
     'upload' => 'Upload',
+    'new' => 'New',
 
+    'id' => 'ID',
+    'title' => 'Title',
     'name' => 'Name',
+    'created_at' => 'Created at',
     'email' => 'Email',
     'phone_number' => 'Phone number',
     'image' => 'Image',

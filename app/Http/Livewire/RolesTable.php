@@ -33,7 +33,9 @@ final class RolesTable extends PowerGridComponent
         $this->showCheckBox()
             ->showPerPage()
             ->showSearchInput()
-            ->showExportOption('download', ['excel', 'csv']);
+            ->showRecordCount()
+            ->showToggleColumns()
+            ->showExportOption('roles', ['excel', 'csv']);
     }
 
     /*
@@ -51,7 +53,7 @@ final class RolesTable extends PowerGridComponent
     */
     public function datasource(): ?Builder
     {
-        return Role::query();
+        return Role::query()->whereNotIn('name', ['super-admin']);
     }
 
     /*
@@ -84,12 +86,13 @@ final class RolesTable extends PowerGridComponent
     {
         return PowerGrid::eloquent()
             ->addColumn('id')
-            ->addColumn('created_at_formatted', function(Role $model) { 
+            ->addColumn('name')
+            ->addColumn('created_at_formatted', function(Role $model) {
                 return Carbon::parse($model->created_at)->format('d/m/Y H:i:s');
-            })
-            ->addColumn('updated_at_formatted', function(Role $model) { 
-                return Carbon::parse($model->updated_at)->format('d/m/Y H:i:s');
             });
+//            ->addColumn('updated_at_formatted', function(Role $model) {
+//                return Carbon::parse($model->updated_at)->format('d/m/Y H:i:s');
+//            });
     }
 
     /*
@@ -115,18 +118,23 @@ final class RolesTable extends PowerGridComponent
                 ->makeInputRange(),
 
             Column::add()
+                ->title('Name')
+                ->field('name')
+                ->makeInputText(),
+
+            Column::add()
                 ->title('CREATED AT')
                 ->field('created_at_formatted', 'created_at')
                 ->searchable()
                 ->sortable()
                 ->makeInputDatePicker('created_at'),
 
-            Column::add()
-                ->title('UPDATED AT')
-                ->field('updated_at_formatted', 'updated_at')
-                ->searchable()
-                ->sortable()
-                ->makeInputDatePicker('updated_at'),
+//            Column::add()
+//                ->title('UPDATED AT')
+//                ->field('updated_at_formatted', 'updated_at')
+//                ->searchable()
+//                ->sortable()
+//                ->makeInputDatePicker('updated_at'),
 
         ]
 ;
@@ -145,24 +153,21 @@ final class RolesTable extends PowerGridComponent
      *
      * @return array<int, \PowerComponents\LivewirePowerGrid\Button>
      */
-
-    /*
     public function actions(): array
     {
        return [
            Button::add('edit')
                ->caption('Edit')
-               ->class('bg-indigo-500 cursor-pointer text-white px-3 py-2.5 m-1 rounded text-sm')
-               ->route('role.edit', ['role' => 'id']),
+               ->class('btn btn-primary text-sm')
+               ->route('admin.roles.edit', ['role' => 'id']),
 
            Button::add('destroy')
                ->caption('Delete')
-               ->class('bg-red-500 cursor-pointer text-white px-3 py-2 m-1 rounded text-sm')
-               ->route('role.destroy', ['role' => 'id'])
+               ->class('btn btn-danger text-sm')
+               ->route('admin.roles.destroy', ['role' => 'id'])
                ->method('delete')
         ];
     }
-    */
 
     /*
     |--------------------------------------------------------------------------
@@ -182,7 +187,7 @@ final class RolesTable extends PowerGridComponent
     public function actionRules(): array
     {
        return [
-           
+
            //Hide button edit for ID 1
             Rule::button('edit')
                 ->when(fn($role) => $role->id === 1)

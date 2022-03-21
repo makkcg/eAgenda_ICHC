@@ -1,6 +1,6 @@
 <x-admin.layouts.master>
     <x-slot name="pageTitle">{{ __('admin.profile') }}</x-slot>
-{{--    <x-slot name="cardHeader">{{ __('admin.edit') .' '. __('admin.profile') }}</x-slot>--}}
+
     <x-admin.includes.card cardHeader="{{ __('admin.edit') .' '. __('admin.profile') }}">
         <form action="{{ route('admin.profile.update') }}" method="post" enctype="multipart/form-data">
             @csrf
@@ -12,11 +12,6 @@
             <x-form.file name="image" image="{{ isset($admin) ? $admin->image : '' }}">{{ __('admin.upload') .' '. __('admin.image') }}</x-form.file>
 
             <x-form.submit redirectRoute="{{ route('admin.profile.edit') }}">{{ __('admin.edit') }}</x-form.submit>
-
-            {{--        <x-form.input type="password" name="password">{{ __('admin.password') }}</x-form.input>--}}
-            {{--        <x-form.input type="password" name="new_password">{{ __('admin.new_password') }}</x-form.input>--}}
-            {{--        <x-form.input type="password" name="new_password_confirmation">{{ __('admin.confirm') .' '. __('admin.password') }}</x-form.input>--}}
-
         </form>
     </x-admin.includes.card>
 
