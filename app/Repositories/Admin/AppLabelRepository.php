@@ -15,18 +15,15 @@ class AppLabelRepository
         AppLabel::create($appLabelData);
     }
 
-//    public function update($admin, $data)
-//    {
-//        if (!empty($data['image'])) {
-//            self::deleteFile($admin->image);
-//            $data['image'] = self::uploadFile($data['image'], 'admins/');
-//        }
-//
-//        $admin->update($data);
-//        $admin->roles()->detach();
-//        $admin->assignRole($data['role']);
-//    }
-//
+    public function update($appLabel, $data)
+    {
+        $appLabelData = ['key' => $data['key']];
+        foreach ($data['lang'] as $key => $value) {
+            $appLabelData[$key] = $value;
+        }
+        $appLabel->update($appLabelData);
+    }
+
 //    public function delete($admin)
 //    {
 //        self::deleteFile($admin->image);

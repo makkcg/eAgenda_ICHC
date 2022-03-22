@@ -1,4 +1,4 @@
-<x-form.input name="key" value="{{ isset($appLocale) ? $appLocale->key : null }}">{{ __('admin.key') }}</x-form.input>
+<x-form.input name="key" value="{{ isset($appLabel) ? $appLabel->key : null }}">{{ __('admin.key') }}</x-form.input>
 
 <div class="">
     <div class="card">
@@ -14,7 +14,7 @@
                 @foreach(config('translatable.locales') as $locale)
                     <div class="{{ $loop->first ? 'active' : '' }} tab-pane" id="{{ 'locale_'.$locale }}">
                         <x-form.textarea name="{{ 'lang['.$locale.'][value]' }}" inputClass="{{ $errors->has('lang.'.$locale.'.value') ? 'is-invalid' : ''}}"
-                                         rows="3" maxlength="255" value="{{ isset($appLocale) ? $appLocale->translate($locale)->value : null }}" required>{{ __('admin.value') }}</x-form.textarea>
+                                         rows="3" maxlength="255" value="{{ isset($appLabel) ? $appLabel->translate($locale)->value : null }}" required>{{ __('admin.value') }}</x-form.textarea>
 
 {{--                        @error('lang.'.$locale.'.value')--}}
 {{--                        <p class="help text-danger">{{ $errors->first('lang.'.$locale.'.value') }}</p>--}}

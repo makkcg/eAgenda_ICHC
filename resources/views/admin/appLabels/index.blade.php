@@ -1,7 +1,7 @@
 <x-admin.layouts.card>
-    <x-slot name="pageTitle">{{ __('admin.roles') }}</x-slot>
+    <x-slot name="pageTitle">{{ __('admin.app_labels') }}</x-slot>
     <x-slot name="cardHeader">
-        <a href="{{ route('admin.roles.create') }}" class="btn btn-secondary float-right"><i class="fas fa-plus"></i><span class="mx-2"> {{ __('admin.add') .' '. __('admin.role') }}</span></a>
+        <a href="{{ route('admin.appLabels.create') }}" class="btn btn-secondary float-right"><i class="fas fa-plus"></i><span class="mx-2"> {{ __('admin.add') .' '. __('admin.app_label') }}</span></a>
     </x-slot>
 
     <x-slot name="styles">
@@ -9,7 +9,7 @@
         @powerGridStyles
     </x-slot>
 
-    <livewire:roles-table/>
+    <livewire:app-labels-table/>
 
     <x-slot name="scripts">
         <script src="{{ asset('admin-assets/powergrid-assets/jquery-3.6.0.slim.min.js') }}"></script>

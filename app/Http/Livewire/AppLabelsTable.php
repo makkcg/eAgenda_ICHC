@@ -2,7 +2,7 @@
 
 namespace App\Http\Livewire;
 
-use Spatie\Permission\Models\Role;
+use App\Models\AppLabel;
 use Illuminate\Support\Carbon;
 use Illuminate\Database\QueryException;
 use Illuminate\Database\Eloquent\Builder;
@@ -14,7 +14,7 @@ use PowerComponents\LivewirePowerGrid\PowerGridComponent;
 use PowerComponents\LivewirePowerGrid\Traits\ActionButton;
 use PowerComponents\LivewirePowerGrid\Rules\Rule;
 
-final class RolesTable extends PowerGridComponent
+final class AppLabelsTable extends PowerGridComponent
 {
     use ActionButton;
 
@@ -35,7 +35,7 @@ final class RolesTable extends PowerGridComponent
             ->showSearchInput()
             ->showRecordCount()
             ->showToggleColumns()
-            ->showExportOption('roles', ['excel', 'csv']);
+            ->showExportOption('download', ['excel', 'csv']);
     }
 
     /*
@@ -49,11 +49,11 @@ final class RolesTable extends PowerGridComponent
     /**
     * PowerGrid datasource.
     *
-    * @return  \Illuminate\Database\Eloquent\Builder<\Spatie\Permission\Models\Role>|null
+    * @return  \Illuminate\Database\Eloquent\Builder<\App\Models\AppLabel>|null
     */
     public function datasource(): ?Builder
     {
-        return Role::query()->whereNotIn('name', ['super-admin']);
+        return AppLabel::query();
     }
 
     /*
@@ -86,13 +86,10 @@ final class RolesTable extends PowerGridComponent
     {
         return PowerGrid::eloquent()
             ->addColumn('id')
-            ->addColumn('name')
-            ->addColumn('created_at_formatted', function(Role $model) {
+            ->addColumn('key')
+            ->addColumn('created_at_formatted', function(AppLabel $model) {
                 return Carbon::parse($model->created_at)->format('d/m/Y H:i:s');
             });
-//            ->addColumn('updated_at_formatted', function(Role $model) {
-//                return Carbon::parse($model->updated_at)->format('d/m/Y H:i:s');
-//            });
     }
 
     /*
@@ -118,8 +115,10 @@ final class RolesTable extends PowerGridComponent
                 ->makeInputRange(),
 
             Column::add()
-                ->title(trans('admin.name'))
-                ->field('name')
+                ->title(trans('admin.key'))
+                ->field('key')
+                ->sortable()
+                ->searchable()
                 ->makeInputText(),
 
             Column::add()
@@ -128,16 +127,7 @@ final class RolesTable extends PowerGridComponent
                 ->searchable()
                 ->sortable()
                 ->makeInputDatePicker('created_at'),
-
-//            Column::add()
-//                ->title('UPDATED AT')
-//                ->field('updated_at_formatted', 'updated_at')
-//                ->searchable()
-//                ->sortable()
-//                ->makeInputDatePicker('updated_at'),
-
-        ]
-;
+        ];
     }
 
     /*
@@ -149,7 +139,7 @@ final class RolesTable extends PowerGridComponent
     */
 
      /**
-     * PowerGrid Role Action Buttons.
+     * PowerGrid AppLabel Action Buttons.
      *
      * @return array<int, \PowerComponents\LivewirePowerGrid\Button>
      */
@@ -160,14 +150,14 @@ final class RolesTable extends PowerGridComponent
                ->caption('Edit')
                ->target('')
                ->class('btn btn-primary text-sm')
-               ->route('admin.roles.edit', ['role' => 'id']),
+               ->route('admin.appLabels.edit', ['appLabel' => 'id']),
 
-           Button::add('destroy')
-               ->caption('Delete')
-               ->target('')
-               ->class('btn btn-danger text-sm')
-               ->route('admin.roles.destroy', ['role' => 'id'])
-               ->method('delete')
+//           Button::add('destroy')
+//               ->caption('Delete')
+//               ->target('')
+//               ->class('btn btn-danger text-sm')
+//               ->route('admin.appLabels.destroy', ['appLabel' => 'id'])
+//               ->method('delete')
         ];
     }
 
@@ -180,7 +170,7 @@ final class RolesTable extends PowerGridComponent
     */
 
      /**
-     * PowerGrid Role Action Rules.
+     * PowerGrid AppLabel Action Rules.
      *
      * @return array<int, \PowerComponents\LivewirePowerGrid\Rules\RuleActions>
      */
@@ -192,7 +182,7 @@ final class RolesTable extends PowerGridComponent
 
            //Hide button edit for ID 1
             Rule::button('edit')
-                ->when(fn($role) => $role->id === 1)
+                ->when(fn($app-label) => $app-label->id === 1)
                 ->hide(),
         ];
     }
@@ -208,7 +198,7 @@ final class RolesTable extends PowerGridComponent
     */
 
      /**
-     * PowerGrid Role Update.
+     * PowerGrid AppLabel Update.
      *
      * @param array<string,string> $data
      */
@@ -217,7 +207,7 @@ final class RolesTable extends PowerGridComponent
     public function update(array $data ): bool
     {
        try {
-           $updated = Role::query()->findOrFail($data['id'])
+           $updated = AppLabel::query()->findOrFail($data['id'])
                 ->update([
                     $data['field'] => $data['value'],
                 ]);

@@ -32,26 +32,23 @@ class AppLabelController extends Controller
         $this->appLabelRepository->create($request->all());
         toast(trans('admin.new').' '.trans('admin.app_label').' '.trans('admin.added'),'success');
 
-        return redirect()->route('admin.admins.index');
+        return redirect()->route('admin.appLabels.index');
     }
 
-//    public function edit(Admin $admin)
-//    {
-//        return view('admin.admins.edit', [
-//            'admin' => $admin,
-//            'roles' => Role::where('name', '!=', 'super-admin')->get(),
-//        ]);
-//    }
-//
-//    public function update(UpdateRequest $request, Admin $admin)
-//    {
-//        $this->adminRepository->update($admin, $request->validated());
-//
-//        toast(trans('admin.admin').' '.trans('admin.updated').' '.trans('admin.successfully'),'success');
-//
-//        return redirect()->route('admin.admins.index');
-//    }
-//
+    public function edit(AppLabel $appLabel)
+    {
+        return view('admin.appLabels.edit', compact('appLabel'));
+    }
+
+    public function update(AppLabelRequest $request, AppLabel $appLabel)
+    {
+        $this->appLabelRepository->update($appLabel, $request->validated());
+
+        toast(trans('admin.admin').' '.trans('admin.updated').' '.trans('admin.successfully'),'success');
+
+        return redirect()->route('admin.appLabels.index');
+    }
+
 //    public function destroy(Admin $admin)
 //    {
 //        $this->adminRepository->delete($admin);
@@ -59,7 +56,7 @@ class AppLabelController extends Controller
 //
 //        return back();
 //    }
-//
+
 //    public function changePassword(ChangePasswordRequest $request, Admin $admin)
 //    {
 //        $this->adminRepository->changePassword($admin, $request->validated());

@@ -178,11 +178,13 @@ final class AdminsTable extends PowerGridComponent
        return [
            Button::add('edit')
                ->caption(trans('admin.edit'))
+               ->target('')
                ->class('btn btn-primary text-sm')
                ->route('admin.admins.edit', ['admin' => 'id']),
 
            Button::add('destroy')
                ->caption(trans('admin.delete'))
+               ->target('')
                ->class('btn btn-danger text-sm')
                ->route('admin.admins.destroy', ['admin' => 'id'])
                ->method('delete')
