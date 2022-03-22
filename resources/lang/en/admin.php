@@ -33,6 +33,8 @@ return [
     'image' => 'Image',
     'password' => 'Password',
     'new_password' => 'New password',
+    'key' => 'Key',
+    'value' => 'Value',
 
     'settings' => 'Settings',
     'profile' => 'Profile',
@@ -45,4 +47,6 @@ return [
     'users' => 'Users',
     'admin' => 'Admin',
     'admins' => 'Admins',
+    'app_label' => 'App Label',
+    'app_labels' => 'App Labels',
 ];

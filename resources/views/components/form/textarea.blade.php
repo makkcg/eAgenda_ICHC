@@ -2,7 +2,7 @@
     @if($label)
         <label for="{{ $name }}">{{ $slot }}</label>
     @endif
-    <textarea class="form-control @error($name) is-invalid @enderror" id="{{ $name }}" name="{{ $name }}"
+    <textarea class="form-control {{ $inputClass }} @error($name) is-invalid @enderror" id="{{ $name }}" name="{{ $name }}"
               placeholder="{{ $slot }}" {{ $attributes }}>{!! $value ?? old($name) !!}</textarea>
 
     @error($name)

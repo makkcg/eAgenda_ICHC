@@ -30,4 +30,6 @@ Route::middleware('auth:admin')->group(function () {
 
     Route::resource('/admins', AdminController::class)->except('show')->middleware('role_or_permission:super-admin|admins');
     Route::post('/admins/{admin}/password', [AdminController::class, 'changePassword'])->name('admins.password')->middleware('role_or_permission:super-admin|admins');
+
+    Route::resource('/appLabels', AppLabelController::class)->except('show')->middleware('role_or_permission:super-admin|app_labels');
 });
