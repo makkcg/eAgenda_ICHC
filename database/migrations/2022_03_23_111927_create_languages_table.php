@@ -19,7 +19,7 @@ class CreateLanguagesTable extends Migration
             $table->string('name');
             $table->string('direction');
             $table->string('local_name');
-            $table->string('status')->default(0);
+            $table->tinyInteger('status')->default(0);
             $table->timestamps();
         });
     }

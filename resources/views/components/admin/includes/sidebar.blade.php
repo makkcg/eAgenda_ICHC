@@ -116,6 +116,14 @@
                         </ul>
                     </li>
                 @endif
+                @if(auth()->user()->hasRole('super-admin') || auth()->user()->can('languages'))
+                    <li class="nav-item">
+                        <a href="{{ route('admin.languages.index') }}" class="nav-link">
+                            <i class="fas fa-language mr-2"></i>
+                            <p>{{ __('admin.languages') }}</p>
+                        </a>
+                    </li>
+                @endif
                 @if(auth()->user()->hasRole('super-admin') || auth()->user()->can('settings'))
                     <li class="nav-item">
                         <a href="{{ route('admin.settings.edit') }}" class="nav-link">

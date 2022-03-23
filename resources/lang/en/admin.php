@@ -4,9 +4,11 @@ return [
     'dashboard' => 'Dashboard',
     'home' => 'Home',
     'active' => 'Active',
+    'inactive' => 'Inactive',
     'banned' => 'Banned',
     'logout' => 'Log out',
 
+    'all' => 'All',
     'add' => 'Add',
     'added' => 'Added',
     'edit' => 'Edit',
@@ -23,6 +25,8 @@ return [
     'upload' => 'Upload',
     'new' => 'New',
     'choose' => 'Choose',
+    'yes' => 'Yes',
+    'no' => 'No',
 
     'id' => 'ID',
     'title' => 'Title',
@@ -35,6 +39,10 @@ return [
     'new_password' => 'New password',
     'key' => 'Key',
     'value' => 'Value',
+    'code' => 'Code',
+    'direction' => 'Direction',
+    'local_name' => 'Local name',
+    'status' => 'Status',
 
     'settings' => 'Settings',
     'profile' => 'Profile',
@@ -49,4 +57,6 @@ return [
     'admins' => 'Admins',
     'app_label' => 'App Label',
     'app_labels' => 'App Labels',
+    'language' => 'Language',
+    'languages' => 'Languages',
 ];

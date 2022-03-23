@@ -32,4 +32,9 @@ Route::middleware('auth:admin')->group(function () {
     Route::post('/admins/{admin}/password', [AdminController::class, 'changePassword'])->name('admins.password')->middleware('role_or_permission:super-admin|admins');
 
     Route::resource('/appLabels', AppLabelController::class)->except('show')->middleware('role_or_permission:super-admin|app_labels');
+
+    Route::get('/languages', [LanguageController::class, 'index'])->name('languages.index')
+        ->middleware('role_or_permission:super-admin|languages');
+    Route::get('/languages/{language}/status', [LanguageController::class, 'changeStatus'])->name('languages.status')
+        ->middleware('role_or_permission:super-admin|languages');
 });
