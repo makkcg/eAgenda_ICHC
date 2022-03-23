@@ -3,6 +3,9 @@
 namespace App\Repositories\Admin;
 
 use App\Models\AppLabel;
+use App\Models\AppLabelTranslation;
+use Illuminate\Support\Arr;
+use function Sodium\add;
 
 class AppLabelRepository
 {
@@ -17,11 +20,23 @@ class AppLabelRepository
 
     public function update($appLabel, $data)
     {
-        $appLabelData = ['key' => $data['key']];
-        foreach ($data['lang'] as $key => $value) {
-            $appLabelData[$key] = $value;
+        $locales = $appLabel->translations->pluck('locale')->toArray();
+        $newTranslations = [];
+
+        foreach ($data['lang'] as $locale => $fields) {
+            if (in_array($locale, $locales)) {
+                $data[$locale] = $fields;
+                continue;
+            }
+            $newTranslations[] = [
+                'app_label_id' => $appLabel->id,
+                'locale' => $locale,
+                'value' => $fields['value'],
+            ];
         }
-        $appLabel->update($appLabelData);
+
+        $appLabel->update($data);
+        AppLabelTranslation::insert($newTranslations);
     }
 
 //    public function delete($admin)

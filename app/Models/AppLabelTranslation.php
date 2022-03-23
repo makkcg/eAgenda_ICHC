@@ -9,5 +9,6 @@ class AppLabelTranslation extends Model
 {
     use HasFactory;
 
+    public $timestamps = false;
     protected $fillable = ['value'];
 }

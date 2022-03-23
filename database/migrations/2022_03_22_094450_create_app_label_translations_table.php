@@ -25,7 +25,6 @@ class CreateAppLabelTranslationsTable extends Migration
             $table->string('value');
 
             $table->unique(['app_label_id', 'locale']);
-            $table->timestamps();
         });
     }
 

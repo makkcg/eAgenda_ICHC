@@ -4,17 +4,18 @@
     <div class="card">
         <div class="card-header p-2">
             <ul class="nav nav-pills">
-                @foreach(config('translatable.locales') as $locale)
-                    <li class="nav-item"><a class="nav-link {{ $loop->first ? 'active' : '' }}" href="#{{ 'locale_'.$locale }}" data-toggle="tab">{{ '( '. strtoupper($locale) .' )' }}</a></li>
+                @foreach($languages as $language)
+                    <li class="nav-item"><a class="nav-link {{ $loop->first ? 'active' : '' }}" href="#{{ 'locale_'.$language->code }}" data-toggle="tab">{{ $language->name.' ( '. $language->code .' )' }}</a></li>
                 @endforeach
             </ul>
         </div>
         <div class="card-body">
             <div class="tab-content">
-                @foreach(config('translatable.locales') as $locale)
-                    <div class="{{ $loop->first ? 'active' : '' }} tab-pane" id="{{ 'locale_'.$locale }}">
-                        <x-form.textarea name="{{ 'lang['.$locale.'][value]' }}" inputClass="{{ $errors->has('lang.'.$locale.'.value') ? 'is-invalid' : ''}}"
-                                         rows="3" maxlength="255" value="{{ isset($appLabel) ? $appLabel->translate($locale)->value : null }}" required>{{ __('admin.value') }}</x-form.textarea>
+                {{ dd($appLabel->translations) }}
+                @foreach($languages as $language)
+                    <div class="{{ $loop->first ? 'active' : '' }} tab-pane" id="{{ 'locale_'.$language->code }}">
+                        <x-form.textarea name="{{ 'lang['.$language->code.'][value]' }}" inputClass="{{ $errors->has('lang.'.$language->code.'.value') ? 'is-invalid' : ''}}"
+                                         rows="3" maxlength="255" value="{{ isset($appLabel) ? $appLabel->translate($language->code)->value ?? '' : null }}" required>{{ __('admin.value') }}</x-form.textarea>
 
 {{--                        @error('lang.'.$locale.'.value')--}}
 {{--                        <p class="help text-danger">{{ $errors->first('lang.'.$locale.'.value') }}</p>--}}
