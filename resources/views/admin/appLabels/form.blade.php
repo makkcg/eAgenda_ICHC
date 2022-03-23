@@ -11,11 +11,10 @@
         </div>
         <div class="card-body">
             <div class="tab-content">
-                {{ dd($appLabel->translations) }}
                 @foreach($languages as $language)
                     <div class="{{ $loop->first ? 'active' : '' }} tab-pane" id="{{ 'locale_'.$language->code }}">
                         <x-form.textarea name="{{ 'lang['.$language->code.'][value]' }}" inputClass="{{ $errors->has('lang.'.$language->code.'.value') ? 'is-invalid' : ''}}"
-                                         rows="3" maxlength="255" value="{{ isset($appLabel) ? $appLabel->translate($language->code)->value ?? '' : null }}" required>{{ __('admin.value') }}</x-form.textarea>
+                                         rows="3" maxlength="255" value="{{ isset($appLabel) ? $appLabel->translateOrDefault($language->code)->value ?? '' : null }}" required>{{ __('admin.value') }}</x-form.textarea>
 
 {{--                        @error('lang.'.$locale.'.value')--}}
 {{--                        <p class="help text-danger">{{ $errors->first('lang.'.$locale.'.value') }}</p>--}}

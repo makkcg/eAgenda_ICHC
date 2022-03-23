@@ -54,20 +54,4 @@ class AppLabelController extends Controller
 
         return redirect()->route('admin.appLabels.index');
     }
-
-//    public function destroy(Admin $admin)
-//    {
-//        $this->adminRepository->delete($admin);
-//        toast(trans('admin.admin').' '.trans('admin.deleted').' '.trans('admin.successfully'),'success');
-//
-//        return back();
-//    }
-
-//    public function changePassword(ChangePasswordRequest $request, Admin $admin)
-//    {
-//        $this->adminRepository->changePassword($admin, $request->validated());
-//        toast(trans('admin.password').' '.trans('admin.changed').' '.trans('admin.successfully'),'success');
-//
-//        return back();
-//    }
 }
