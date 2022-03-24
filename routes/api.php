@@ -49,3 +49,5 @@ Route::group(['middleware' => 'auth:sanctum', 'prefix' => 'tasks/{task}'], funct
     Route::post('/files', [TaskController::class, 'addFiles']);
     Route::delete('/files/{file}', [TaskController::class, 'deleteFile']);
 });
+
+Route::get('/languages', [LanguageController::class, 'index']);
