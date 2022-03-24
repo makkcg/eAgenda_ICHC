@@ -7,6 +7,9 @@ use App\Http\Resources\LanguageResource;
 use App\Models\Language;
 use App\Traits\ApiResponseTrait;
 
+/**
+ * @group Languages
+ */
 class LanguageController extends Controller
 {
     use ApiResponseTrait;
