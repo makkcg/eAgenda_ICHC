@@ -30,6 +30,7 @@ return [
 
     'id' => 'ID',
     'title' => 'Title',
+    'body' => 'Body',
     'name' => 'Name',
     'created_at' => 'Created at',
     'email' => 'Email',
@@ -43,6 +44,8 @@ return [
     'direction' => 'Direction',
     'local_name' => 'Local name',
     'status' => 'Status',
+    'slug' => 'Slug',
+    'action' => 'Action',
 
     'settings' => 'Settings',
     'profile' => 'Profile',
@@ -59,4 +62,6 @@ return [
     'app_labels' => 'App Labels',
     'language' => 'Language',
     'languages' => 'Languages',
+    'page' => 'Page',
+    'pages' => 'Pages',
 ];

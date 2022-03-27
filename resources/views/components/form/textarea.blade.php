@@ -12,6 +12,6 @@
 
 @if($ckEditor)
     <script>
-        CKEDITOR.replace({{ $name }});
+        CKEDITOR.replace('{{ $name }}');
     </script>
 @endif
