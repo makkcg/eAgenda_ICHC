@@ -52,3 +52,5 @@ Route::group(['middleware' => 'auth:sanctum', 'prefix' => 'tasks/{task}'], funct
 
 Route::get('/languages', [LanguageController::class, 'index']);
 Route::get('/appLabels', [AppLabelController::class, 'index']);
+
+Route::get('/pages/{page}', PageController::class);
