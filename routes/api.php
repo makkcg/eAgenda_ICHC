@@ -54,3 +54,10 @@ Route::get('/languages', [LanguageController::class, 'index']);
 Route::get('/appLabels', [AppLabelController::class, 'index']);
 
 Route::get('/pages/{page}', PageController::class);
+
+Route::group(['middleware' => 'auth:sanctum', 'prefix' => 'notes'], function () {
+    Route::get('/', [NoteController::class, 'index']);
+    Route::post('/', [NoteController::class, 'store']);
+    Route::post('/{note}', [NoteController::class, 'update']);
+    Route::delete('/{note}', [NoteController::class, 'destroy']);
+});
