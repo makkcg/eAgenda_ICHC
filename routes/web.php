@@ -17,6 +17,10 @@ Route::view('/', 'website.index');
 
 //Route::view('/powergrid', 'powergrid-demo');
 
+//Route::get('/test', function () {
+//    dd('test');
+//});
+
 
 //Route::get('/dashboard', function () {
 //    return view('dashboard');

@@ -23,6 +23,12 @@ class AppLabelController extends Controller
      */
     public function index()
     {
-        return $this->successMessage(AppLabelResource::collection(AppLabel::all()));
+        $labels = AppLabel::all();
+        $formattedLabels = [];
+
+        foreach ($labels as $label) {
+            $formattedLabels[$label->key] = $label->value;
+        }
+        return $this->successMessage($formattedLabels);
     }
 }
