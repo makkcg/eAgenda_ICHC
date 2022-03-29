@@ -64,4 +64,5 @@ return [
     'languages' => 'Languages',
     'page' => 'Page',
     'pages' => 'Pages',
+    'news' => 'News',
 ];

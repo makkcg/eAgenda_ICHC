@@ -32,7 +32,7 @@ class AppLabelController extends Controller
 
     public function store(AppLabelRequest $request)
     {
-        $this->appLabelRepository->create($request->all());
+        $this->appLabelRepository->create($request->validated());
         toast(trans('admin.new').' '.trans('admin.app_label').' '.trans('admin.added'),'success');
 
         return redirect()->route('admin.appLabels.index');
@@ -50,7 +50,7 @@ class AppLabelController extends Controller
     {
         $this->appLabelRepository->update($appLabel, $request->validated());
 
-        toast(trans('admin.admin').' '.trans('admin.updated').' '.trans('admin.successfully'),'success');
+        toast(trans('admin.app_label').' '.trans('admin.updated').' '.trans('admin.successfully'),'success');
 
         return redirect()->route('admin.appLabels.index');
     }

@@ -39,4 +39,6 @@ Route::middleware('auth:admin')->group(function () {
         ->middleware('role_or_permission:super-admin|languages');
 
     Route::resource('/pages', PageController::class)->only(['index', 'edit', 'update'])->middleware('role_or_permission:super-admin|pages');
+
+    Route::resource('/news', NewsController::class)->except('show')->middleware('role_or_permission:super-admin|news');
 });

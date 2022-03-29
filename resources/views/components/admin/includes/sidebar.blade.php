@@ -116,6 +116,31 @@
                         </ul>
                     </li>
                 @endif
+                @if(auth()->user()->hasRole('super-admin') || auth()->user()->can('news'))
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="fas fa-newspaper mr-2"></i>
+                            <p>
+                                {{ __('admin.news') }}
+                                <i class="fas fa-angle-left right"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{{ route('admin.news.index') }}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>{{ __('admin.news') }}</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ route('admin.news.create') }}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>{{ __('admin.add') .' '. __('admin.news') }}</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                @endif
                 @if(auth()->user()->hasRole('super-admin') || auth()->user()->can('languages'))
                     <li class="nav-item">
                         <a href="{{ route('admin.languages.index') }}" class="nav-link">
