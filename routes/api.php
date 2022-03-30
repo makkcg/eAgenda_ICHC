@@ -62,7 +62,7 @@ Route::group(['middleware' => 'auth:sanctum', 'prefix' => 'notes'], function () 
     Route::delete('/{note}', [NoteController::class, 'destroy']);
 });
 
-Route::group(['middleware' => 'auth:sanctum', 'prefix' => 'news'], function () {
+Route::group(['prefix' => 'news'], function () {
     Route::get('/', [NewsController::class, 'index']);
     Route::get('/random', [NewsController::class, 'getRandom']);
 });
