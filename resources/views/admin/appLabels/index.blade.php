@@ -9,7 +9,7 @@
         @powerGridStyles
     </x-slot>
 
-    <x-import-form route="{{ route('admin.appLabels.import') }}" templateFile="{{ asset('admin-assets/import-templates/appLabels.xlsx') }}"/>
+    <x-import-form route="{{ route('admin.appLabels.import') }}" templateFile="{{ route('admin.appLabels.template') }}"/>
 
     <livewire:app-labels-table/>
 

@@ -9,6 +9,8 @@ use App\Models\AppLabel;
 use App\Models\Language;
 use App\Repositories\Admin\AppLabelRepository;
 use App\Traits\ImportTrait;
+use Illuminate\Support\Collection;
+use Maatwebsite\Excel\Facades\Excel;
 
 class AppLabelController extends Controller
 {
@@ -57,5 +59,18 @@ class AppLabelController extends Controller
         toast(trans('admin.app_label').' '.trans('admin.updated').' '.trans('admin.successfully'),'success');
 
         return redirect()->route('admin.appLabels.index');
+    }
+
+    public function downloadTemplate()
+    {
+        $headingRow = [
+            'key',
+        ];
+
+        foreach (getActiveLanguages()->pluck('code') as $langCode) {
+            $headingRow[] = 'value_'.$langCode;
+        }
+
+        return (new Collection([$headingRow]))->downloadExcel('appLabels.xlsx');
     }
 }
