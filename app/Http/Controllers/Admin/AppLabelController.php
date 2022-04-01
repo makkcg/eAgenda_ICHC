@@ -4,14 +4,18 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\AppLabelRequest;
+use App\Imports\AppLabelsImport;
 use App\Models\AppLabel;
 use App\Models\Language;
 use App\Repositories\Admin\AppLabelRepository;
-use Illuminate\Http\Request;
+use App\Traits\ImportTrait;
 
 class AppLabelController extends Controller
 {
+    use ImportTrait;
+
     private $appLabelRepository;
+    private $importClass = AppLabelsImport::class;
 
     public function __construct(AppLabelRepository $appLabelRepository)
     {

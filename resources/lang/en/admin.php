@@ -25,6 +25,8 @@ return [
     'upload' => 'Upload',
     'new' => 'New',
     'choose' => 'Choose',
+    'import' => 'Import',
+    'imported' => 'imported',
     'yes' => 'Yes',
     'no' => 'No',
 
@@ -36,6 +38,7 @@ return [
     'email' => 'Email',
     'phone_number' => 'Phone number',
     'image' => 'Image',
+    'excel' => 'Excel',
     'password' => 'Password',
     'new_password' => 'New password',
     'key' => 'Key',
@@ -46,6 +49,9 @@ return [
     'status' => 'Status',
     'slug' => 'Slug',
     'action' => 'Action',
+    'data' => 'Data',
+    'download' => 'Download',
+    'template' => 'Template',
 
     'settings' => 'Settings',
     'profile' => 'Profile',
@@ -65,4 +71,6 @@ return [
     'page' => 'Page',
     'pages' => 'Pages',
     'news' => 'News',
+
+    'failed_import' => 'Failed to import data',
 ];
