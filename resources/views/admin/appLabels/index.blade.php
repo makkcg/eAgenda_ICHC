@@ -1,8 +1,15 @@
 <x-admin.layouts.card>
     <x-slot name="pageTitle">{{ __('admin.app_labels') }}</x-slot>
     <x-slot name="cardHeader">
-        <a href="{{ route('admin.appLabels.create') }}" class="btn btn-secondary float-right"><i class="fas fa-plus"></i><span class="mx-2"> {{ __('admin.add') .' '. __('admin.app_label') }}</span></a>
+        <a href="{{ route('admin.appLabels.create') }}" class="btn btn-secondary"><i class="fas fa-plus"></i><span class="mx-2"> {{ __('admin.add') .' '. __('admin.app_label') }}</span></a>
     </x-slot>
+
+    <form action="{{ route('admin.appLabels.delete-all') }}" method="POST">
+        @csrf
+        @method('DELETE')
+
+        <button type="submit" class="btn btn-danger float-right mb-2" onclick="return confirm('Are you sure you want to permanently delete all records?')"><i class="fas fa-trash"></i><span class="mx-2"> {{ __('admin.delete') .' '. __('admin.all') }}</span></button>
+    </form>
 
     <x-slot name="styles">
         @livewireStyles

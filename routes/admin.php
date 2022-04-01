@@ -33,6 +33,7 @@ Route::middleware('auth:admin')->group(function () {
 
     Route::post('/appLabels/import', [AppLabelController::class, 'import'])->name('appLabels.import')->middleware('role_or_permission:super-admin|app_labels');
     Route::get('/appLabels/template', [AppLabelController::class, 'downloadTemplate'])->name('appLabels.template')->middleware('role_or_permission:super-admin|app_labels');
+    Route::delete('/appLabels/delete-all', [AppLabelController::class, 'deleteAll'])->name('appLabels.delete-all')->middleware('role_or_permission:super-admin|app_labels');
     Route::resource('/appLabels', AppLabelController::class)->except(['show', 'destroy'])->middleware('role_or_permission:super-admin|app_labels');
 
     Route::get('/languages', [LanguageController::class, 'index'])->name('languages.index')

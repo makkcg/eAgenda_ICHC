@@ -73,4 +73,12 @@ class AppLabelController extends Controller
 
         return (new Collection([$headingRow]))->downloadExcel('appLabels.xlsx');
     }
+
+    public function deleteAll()
+    {
+        AppLabel::query()->delete();
+        toast(trans('admin.app_labels').' '.trans('admin.deleted').' '.trans('admin.successfully'),'success');
+
+        return back();
+    }
 }
