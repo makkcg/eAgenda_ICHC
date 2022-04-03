@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources\Auth;
 
+use App\Http\Resources\CalenderResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class LoginResource extends JsonResource
@@ -21,6 +22,7 @@ class LoginResource extends JsonResource
             'phone_number' => $this->phone_number,
             'image' => $this->image,
             'access_token' => $this->access_token,
+            'calenders' => CalenderResource::collection($this->calenders),
         ];
     }
 }

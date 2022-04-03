@@ -56,4 +56,14 @@ class User extends Authenticatable
     {
         return $this->hasMany(Tag::class);
     }
+
+    public function calenders()
+    {
+        return $this->hasMany(Calender::class);
+    }
+
+    public function tasks()
+    {
+        return $this->hasManyThrough(Task::class, TaskList::class);
+    }
 }

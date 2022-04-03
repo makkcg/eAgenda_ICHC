@@ -28,11 +28,10 @@ class AddTasks
     {
         $list = TaskList::create([
             'user_id' => $event->user->id,
+            'calender_id' => $event->user->calenders()->first()->id,
             'name' => 'My project',
             'color' => '#00ff00'
         ]);
-
-
 
         $list->tasks()->createMany([
             [

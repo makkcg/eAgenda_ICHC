@@ -66,3 +66,9 @@ Route::group(['prefix' => 'news'], function () {
     Route::get('/', [NewsController::class, 'index']);
     Route::get('/random', [NewsController::class, 'getRandom']);
 });
+
+Route::group(['middleware' => 'auth:sanctum', 'prefix' => 'calenders'], function () {
+    Route::get('/', [CalenderController::class, 'index']);
+    Route::post('/{calender}', [CalenderController::class, 'show']);
+});
+
