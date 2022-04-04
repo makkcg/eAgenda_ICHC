@@ -11,6 +11,7 @@ class Note extends Model
 
     protected $fillable = [
         'user_id',
+        'calender_id',
         'title',
         'color',
         'body',

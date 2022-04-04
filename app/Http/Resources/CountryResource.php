@@ -28,7 +28,7 @@ class CountryResource extends JsonResource
             'region' => $this->region,
             'subregion' => $this->subregion,
             'timezones' => $this->timezones,
-            'translations' => $this->translations,
+//            'translations' => $this->translations,
             'latitude' => $this->latitude,
             'longitude' => $this->longitude,
             'emoji' => $this->emoji,

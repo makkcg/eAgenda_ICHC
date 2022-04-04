@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\ShowCalenderRequest;
 use App\Http\Resources\CalenderResource;
+use App\Http\Resources\NoteResource;
 use App\Http\Resources\TaskResource;
 use App\Models\Calender;
 use App\Repositories\Api\CalenderRepository;
@@ -29,7 +30,7 @@ class CalenderController extends Controller
      *
      * Display a listing of calenders.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function index()
     {
@@ -43,7 +44,7 @@ class CalenderController extends Controller
      *
      * @param  ShowCalenderRequest  $request
      * @param  \App\Models\Calender  $calender
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function show(ShowCalenderRequest $request, Calender $calender)
     {
@@ -52,6 +53,7 @@ class CalenderController extends Controller
             'name' => $calender->name,
             'color' => $calender->color,
             'tasks' => TaskResource::collection($this->calenderRepository->getTasks($calender, $request->input('year'), $request->input('month'))),
+            'notes' => NoteResource::collection($this->calenderRepository->getNotes($calender, $request->input('year'), $request->input('month'))),
         ]);
     }
 }

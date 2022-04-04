@@ -21,6 +21,11 @@ class CreateNotesTable extends Migration
                 ->cascadeOnUpdate()
                 ->cascadeOnDelete();
 
+            $table->foreignId('calender_id')
+                ->constrained()
+                ->cascadeOnUpdate()
+                ->cascadeOnDelete();
+
             $table->string('title');
             $table->string('color');
             $table->text('body');

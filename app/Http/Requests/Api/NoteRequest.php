@@ -25,6 +25,7 @@ class NoteRequest extends FormRequest
     public function rules()
     {
         return [
+            'calender_id' => 'required|exists:calenders,id',
             'title' => 'required|string|max:255',
             'color' => 'required|regex:/^#[a-f0-9]{6}$/i',
             'body' => 'nullable|string',

@@ -2,6 +2,7 @@
 
 namespace App\Repositories\Api;
 
+use App\Models\Note;
 use App\Models\Task;
 use App\Traits\ApiResponseTrait;
 use Illuminate\Http\Exceptions\HttpResponseException;
@@ -25,6 +26,21 @@ class CalenderRepository
             })
             ->when($month, function ($q) use ($month) {
                 return $q->whereMonth('tasks.created_at', $month);
+            })
+            ->get();
+    }
+
+    public function getNotes($calender, $year = '', $month = '')
+    {
+        $this->checkIfCalenderOwner($calender);
+
+        return Note::query()
+            ->where('in_calender', 1)
+            ->when($year, function ($q) use ($year) {
+                return $q->whereYear('created_at', $year);
+            })
+            ->when($month, function ($q) use ($month) {
+                return $q->whereMonth('created_at', $month);
             })
             ->get();
     }
