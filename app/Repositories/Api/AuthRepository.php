@@ -24,6 +24,7 @@ class AuthRepository
         $user = new User();
         $user->name = $data['name'];
         $user->email = $data['email'];
+        $user->country_id = $data['country_id'] ?? null;
         $user->device_token = $data['device_token'] ?? null;
         $user->password = Hash::make($data['password']);
         $user->save();

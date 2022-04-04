@@ -72,3 +72,4 @@ Route::group(['middleware' => 'auth:sanctum', 'prefix' => 'calenders'], function
     Route::post('/{calender}', [CalenderController::class, 'show']);
 });
 
+Route::get('/countries', CountryController::class);

@@ -27,6 +27,7 @@ class RegisterRequest extends FormRequest
         return [
             'name' => 'required|string|max:64',
             'email' => 'required|email|unique:users,email',
+            'country_id' => 'required|exists:countries,id',
             'password' => ['required', 'confirmed', Password::min(8)->mixedCase()->numbers()->symbols()],
             'device_token' => 'nullable|string',
         ];

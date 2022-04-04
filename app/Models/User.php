@@ -26,6 +26,7 @@ class User extends Authenticatable
         'social_id',
         'access_token',
         'device_token',
+        'country_id',
     ];
 
     /**
@@ -65,5 +66,10 @@ class User extends Authenticatable
     public function tasks()
     {
         return $this->hasManyThrough(Task::class, TaskList::class);
+    }
+
+    public function country()
+    {
+        return $this->belongsTo(Country::class);
     }
 }
