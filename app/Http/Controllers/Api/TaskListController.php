@@ -3,15 +3,11 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Api\TagRequest;
 use App\Http\Requests\Api\TaskListRequest;
-use App\Http\Resources\TagResource;
 use App\Http\Resources\TaskListResource;
-use App\Models\Tag;
 use App\Models\TaskList;
 use App\Traits\ApiResponseTrait;
 use Illuminate\Http\Exceptions\HttpResponseException;
-use Illuminate\Http\Request;
 
 /**
  * @group Task Lists
@@ -30,7 +26,7 @@ class TaskListController extends Controller
     public function index()
     {
         return $this->successMessage([
-            'lists' => TaskListResource::collection(TaskList::where('user_id', auth()->user()->id)->get()),
+            'lists' => TaskListResource::collection(TaskList::where('user_id', auth()->user()->id)->latest()->get()),
         ]);
     }
 

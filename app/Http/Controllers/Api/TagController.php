@@ -8,7 +8,6 @@ use App\Http\Resources\TagResource;
 use App\Models\Tag;
 use App\Traits\ApiResponseTrait;
 use Illuminate\Http\Exceptions\HttpResponseException;
-use Illuminate\Http\Request;
 
 /**
  * @group Tags

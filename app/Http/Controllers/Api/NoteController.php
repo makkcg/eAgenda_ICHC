@@ -8,7 +8,6 @@ use App\Http\Resources\NoteResource;
 use App\Models\Note;
 use App\Repositories\Api\NoteRepository;
 use App\Traits\ApiResponseTrait;
-use Illuminate\Http\Request;
 
 /**
  * @group Notes
@@ -34,7 +33,7 @@ class NoteController extends Controller
     public function index()
     {
         return $this->successMessage([
-            'notes' => NoteResource::collection(Note::where('user_id', auth()->user()->id)->get()),
+            'notes' => NoteResource::collection(Note::where('user_id', auth()->user()->id)->latest()->get()),
         ]);
     }
 

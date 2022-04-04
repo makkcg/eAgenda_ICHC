@@ -15,7 +15,7 @@ class TaskRepository
     {
         $this->checkIfTaskListOwner($taskList);
 
-        return $taskList->tasks;
+        return $taskList->tasks()->latest()->get();
     }
 
     public function create($taskList, $data)
