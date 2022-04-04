@@ -29,7 +29,7 @@ class AppLabelsImport implements ToModel, WithValidation, WithHeadingRow
     public function rules(): array
     {
         return [
-            'key' => 'required|unique:app_labels,key',
+            'key' => 'required|string|max:255|regex:/^[a-z0-9]+$/i|unique:app_labels,key',
             'value_en' => 'required|string|max:255',
         ];
     }
