@@ -39,6 +39,7 @@ return [
     'email' => 'Email',
     'phone_number' => 'Phone number',
     'image' => 'Image',
+    'flag' => 'Flag',
     'excel' => 'Excel',
     'password' => 'Password',
     'new_password' => 'New password',
@@ -74,6 +75,9 @@ return [
     'news' => 'News',
     'country' => 'Country',
     'countries' => 'Countries',
+    'information' => 'Information',
+    'information_bank' => 'Information Bank',
+    'some_information' => 'Some Information',
 
     'failed_import' => 'Failed to import data',
 ];

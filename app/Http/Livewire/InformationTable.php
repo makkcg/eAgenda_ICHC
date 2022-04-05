@@ -2,9 +2,9 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\News;
-use Illuminate\Support\Carbon;
+use App\Models\Information;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Carbon;
 use PowerComponents\LivewirePowerGrid\Button;
 use PowerComponents\LivewirePowerGrid\Column;
 use PowerComponents\LivewirePowerGrid\PowerGrid;
@@ -12,7 +12,7 @@ use PowerComponents\LivewirePowerGrid\PowerGridEloquent;
 use PowerComponents\LivewirePowerGrid\PowerGridComponent;
 use PowerComponents\LivewirePowerGrid\Traits\ActionButton;
 
-final class NewsTable extends PowerGridComponent
+final class InformationTable extends PowerGridComponent
 {
     use ActionButton;
 
@@ -47,14 +47,14 @@ final class NewsTable extends PowerGridComponent
     /**
     * PowerGrid datasource.
     *
-    * @return  \Illuminate\Database\Eloquent\Builder<\App\Models\News>|null
+    * @return  \Illuminate\Database\Eloquent\Builder<\App\Models\Information>|null
     */
     public function datasource(): ?Builder
     {
-        return News::query()
-            ->join('news_translations', 'news.id', '=', 'news_translations.news_id')
+        return Information::query()
+            ->join('information_translations', 'information.id', '=', 'information_translations.information_id')
             ->where('locale', 'en')
-            ->select('news.*', 'news_translations.title as title');
+            ->select('information.*', 'information_translations.title as title');
     }
 
     /*
@@ -88,10 +88,9 @@ final class NewsTable extends PowerGridComponent
         return PowerGrid::eloquent()
             ->addColumn('id')
             ->addColumn('title')
-            ->addColumn('created_at_formatted', function(News $model) {
+            ->addColumn('created_at_formatted', function(Information $model) {
                 return Carbon::parse($model->created_at)->format('d/m/Y H:i:s');
             });
-
     }
 
     /*
@@ -113,12 +112,12 @@ final class NewsTable extends PowerGridComponent
         return [
             Column::add()
                 ->title(trans('admin.id'))
-                ->field('id', 'news.id')
+                ->field('id', 'information.id')
                 ->makeInputRange(),
 
             Column::add()
                 ->title(trans('admin.title'))
-                ->field('title', 'news_translations.title')
+                ->field('title', 'information_translations.title')
                 ->sortable()
                 ->searchable()
                 ->makeInputText(),
@@ -141,7 +140,7 @@ final class NewsTable extends PowerGridComponent
     */
 
      /**
-     * PowerGrid News Action Buttons.
+     * PowerGrid Information Action Buttons.
      *
      * @return array<int, \PowerComponents\LivewirePowerGrid\Button>
      */
@@ -149,16 +148,16 @@ final class NewsTable extends PowerGridComponent
     {
        return [
            Button::add('edit')
-               ->caption(trans('admin.edit'))
+               ->caption('Edit')
                ->target('')
                ->class('btn btn-primary text-sm')
-               ->route('admin.news.edit', ['news' => 'id']),
+               ->route('admin.information.edit', ['information' => 'id']),
 
            Button::add('destroy')
-               ->caption(trans('admin.delete'))
+               ->caption('Delete')
                ->target('')
                ->class('btn btn-danger text-sm')
-               ->route('admin.news.destroy', ['news' => 'id'])
+               ->route('admin.information.destroy', ['information' => 'id'])
                ->method('delete')
         ];
     }
@@ -172,7 +171,7 @@ final class NewsTable extends PowerGridComponent
     */
 
      /**
-     * PowerGrid News Action Rules.
+     * PowerGrid Information Action Rules.
      *
      * @return array<int, \PowerComponents\LivewirePowerGrid\Rules\RuleActions>
      */
@@ -184,7 +183,7 @@ final class NewsTable extends PowerGridComponent
 
            //Hide button edit for ID 1
             Rule::button('edit')
-                ->when(fn($news) => $news->id === 1)
+                ->when(fn($information) => $information->id === 1)
                 ->hide(),
         ];
     }
@@ -200,7 +199,7 @@ final class NewsTable extends PowerGridComponent
     */
 
      /**
-     * PowerGrid News Update.
+     * PowerGrid Information Update.
      *
      * @param array<string,string> $data
      */
@@ -209,7 +208,7 @@ final class NewsTable extends PowerGridComponent
     public function update(array $data ): bool
     {
        try {
-           $updated = News::query()->findOrFail($data['id'])
+           $updated = Information::query()->findOrFail($data['id'])
                 ->update([
                     $data['field'] => $data['value'],
                 ]);
