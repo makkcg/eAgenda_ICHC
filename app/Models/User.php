@@ -48,7 +48,7 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function getImageAttribute()
+    public function getImageUrlAttribute()
     {
         return !empty($this->attributes['image']) ? asset($this->attributes['image']) : '';
     }

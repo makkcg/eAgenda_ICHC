@@ -21,8 +21,9 @@ class LoginResource extends JsonResource
             'name' => $this->name,
             'email' => $this->email,
             'phone_number' => $this->phone_number,
-            'image' => $this->image,
+            'image' => $this->image_url,
             'access_token' => $this->access_token,
+            'device_token' => $this->device_token,
             'country' => new CountryResource($this->country),
             'calenders' => CalenderResource::collection($this->calenders),
         ];

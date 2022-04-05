@@ -73,3 +73,5 @@ Route::group(['middleware' => 'auth:sanctum', 'prefix' => 'calenders'], function
 });
 
 Route::get('/countries', CountryController::class);
+
+Route::post('/user/profile', ProfileController::class)->middleware('auth:sanctum');
