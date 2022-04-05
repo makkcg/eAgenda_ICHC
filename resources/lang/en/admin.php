@@ -35,6 +35,7 @@ return [
     'body' => 'Body',
     'name' => 'Name',
     'created_at' => 'Created at',
+    'registered_at' => 'Registered at',
     'email' => 'Email',
     'phone_number' => 'Phone number',
     'image' => 'Image',
@@ -71,6 +72,8 @@ return [
     'page' => 'Page',
     'pages' => 'Pages',
     'news' => 'News',
+    'country' => 'Country',
+    'countries' => 'Countries',
 
     'failed_import' => 'Failed to import data',
 ];

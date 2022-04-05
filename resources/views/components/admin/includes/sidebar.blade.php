@@ -141,6 +141,14 @@
                         </ul>
                     </li>
                 @endif
+                @if(auth()->user()->hasRole('super-admin') || auth()->user()->can('users'))
+                    <li class="nav-item">
+                        <a href="{{ route('admin.users.index') }}" class="nav-link">
+                            <i class="fas fa-users mr-2"></i>
+                            <p>{{ __('admin.users') }}</p>
+                        </a>
+                    </li>
+                @endif
                 @if(auth()->user()->hasRole('super-admin') || auth()->user()->can('languages'))
                     <li class="nav-item">
                         <a href="{{ route('admin.languages.index') }}" class="nav-link">
