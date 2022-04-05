@@ -14,7 +14,7 @@ class MatchOldPassword implements Rule
      *
      * @return void
      */
-    public function __construct($guard = 'web')
+    public function __construct($guard = '')
     {
         $this->guard = $guard;
     }

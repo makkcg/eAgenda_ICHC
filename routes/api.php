@@ -74,4 +74,7 @@ Route::group(['middleware' => 'auth:sanctum', 'prefix' => 'calenders'], function
 
 Route::get('/countries', CountryController::class);
 
-Route::post('/user/profile', ProfileController::class)->middleware('auth:sanctum');
+Route::group(['middleware' => 'auth:sanctum', 'prefix' => 'user'], function () {
+    Route::post('/profile', [UserController::class, 'updateProfile']);
+    Route::post('/password', [UserController::class, 'changePassword']);
+});
