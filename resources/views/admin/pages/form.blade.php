@@ -23,4 +23,6 @@
     </div>
 </div>
 
+<x-form.file name="image" image="{{ isset($page) ? $page->image : '' }}">{{ __('admin.upload') .' '. __('admin.image') }}</x-form.file>
+
 <x-form.submit redirectRoute="{{ route('admin.pages.index') }}">{{ isset($page) ? __('admin.edit') : __('admin.add') }}</x-form.submit>

@@ -26,6 +26,7 @@ class PageRequest extends FormRequest
         return [
             'lang.*.title' => 'required|string|max:255',
             'lang.*.body' => 'required|string',
+            'image' => 'nullable|image|max:2048',
         ];
     }
 }

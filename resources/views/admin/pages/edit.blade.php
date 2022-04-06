@@ -8,7 +8,7 @@
         <script type="text/javascript" src="{{ asset('admin-assets/ckeditor/ckeditor.js') }}"></script>
     </x-slot>
 
-    <form action="{{ route('admin.pages.update', $page) }}" method="post">
+    <form action="{{ route('admin.pages.update', $page) }}" method="post" enctype="multipart/form-data">
         @csrf
         @method('put')
         @include('admin.pages.form')
