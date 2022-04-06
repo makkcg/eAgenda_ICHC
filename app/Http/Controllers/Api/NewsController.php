@@ -20,11 +20,12 @@ class NewsController extends Controller
      *
      * Display a listing of news.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function index(Request $request)
     {
         $news = News::latest()->paginate($request->input('perPage', 10));
+
         return $this->successMessage([
             'news' => NewsResource::collection($news),
             'current_page' => $news->currentPage(),
@@ -37,12 +38,14 @@ class NewsController extends Controller
      *
      * Display random news.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function getRandom()
     {
+        $news = News::inRandomOrder()->first();
+
         return $this->successMessage([
-            'news' => new NewsResource(News::inRandomOrder()->first()),
+            'news' => $news ? new NewsResource($news) : json_decode("{}"),
         ]);
     }
 }

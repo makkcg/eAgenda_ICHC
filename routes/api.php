@@ -78,3 +78,5 @@ Route::group(['middleware' => 'auth:sanctum', 'prefix' => 'user'], function () {
     Route::post('/profile', [UserController::class, 'updateProfile']);
     Route::post('/password', [UserController::class, 'changePassword']);
 });
+
+Route::get('/information/random', InformationController::class);
