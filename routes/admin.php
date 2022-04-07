@@ -48,4 +48,6 @@ Route::middleware('auth:admin')->group(function () {
     Route::get('/users', [UserController::class, 'index'])->name('users.index')->middleware('role_or_permission:super-admin|users');
 
     Route::resource('/information', InformationController::class)->except('show')->middleware('role_or_permission:super-admin|information');
+
+    Route::resource('/events', EventController::class)->except('show')->middleware('role_or_permission:super-admin|events');
 });

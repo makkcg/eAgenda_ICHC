@@ -70,6 +70,10 @@ class SuperAdminSeeder extends Seeder
                 'name' => 'information',
                 'guard_name' => 'admin',
             ],
+            [
+                'name' => 'events',
+                'guard_name' => 'admin',
+            ],
         ]);
 
         $superAdmin->assignRole('super-admin');

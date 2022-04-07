@@ -54,6 +54,8 @@ return [
     'data' => 'Data',
     'download' => 'Download',
     'template' => 'Template',
+    'color' => 'Color',
+    'date' => 'Date',
 
     'settings' => 'Settings',
     'profile' => 'Profile',
@@ -78,6 +80,8 @@ return [
     'information' => 'Information',
     'information_bank' => 'Information Bank',
     'some_information' => 'Some Information',
+    'event' => 'Event',
+    'events' => 'Events',
 
     'failed_import' => 'Failed to import data',
 ];
