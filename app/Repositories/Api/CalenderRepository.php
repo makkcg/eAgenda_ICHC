@@ -2,6 +2,7 @@
 
 namespace App\Repositories\Api;
 
+use App\Models\Calender;
 use App\Models\Note;
 use App\Models\Task;
 use App\Traits\ApiResponseTrait;
@@ -45,7 +46,7 @@ class CalenderRepository
             ->get();
     }
 
-    private function checkIfCalenderOwner($calender)
+    public function checkIfCalenderOwner(Calender $calender)
     {
         if ($calender->user_id == auth()->user()->id) {
             return;

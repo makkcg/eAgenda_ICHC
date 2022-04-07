@@ -80,3 +80,10 @@ Route::group(['middleware' => 'auth:sanctum', 'prefix' => 'user'], function () {
 });
 
 Route::get('/information/random', InformationController::class);
+
+Route::group(['middleware' => 'auth:sanctum', 'prefix' => 'personal-events'], function () {
+    Route::get('/', [PersonalEventController::class, 'index']);
+    Route::post('/', [PersonalEventController::class, 'store']);
+    Route::post('/{personalEvent}', [PersonalEventController::class, 'update']);
+    Route::delete('/{personalEvent}', [PersonalEventController::class, 'destroy']);
+});
