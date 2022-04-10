@@ -4,12 +4,18 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\EventRequest;
+use App\Imports\EventsImport;
 use App\Models\Event;
 use App\Repositories\Admin\EventRepository;
+use App\Traits\ImportTrait;
+use Illuminate\Support\Collection;
 
 class EventController extends Controller
 {
+    use ImportTrait;
+
     private $eventRepository;
+    private $importClass = EventsImport::class;
 
     public function __construct(EventRepository $eventRepository)
     {
@@ -52,6 +58,28 @@ class EventController extends Controller
     {
         $this->eventRepository->delete($event);
         toast(trans('admin.event').' '.trans('admin.deleted').' '.trans('admin.successfully'),'success');
+
+        return back();
+    }
+
+    public function downloadTemplate()
+    {
+        $headingRow = [
+            'color',
+            'date',
+        ];
+
+        foreach (getActiveLanguages()->pluck('code') as $langCode) {
+            $headingRow[] = 'title_'.$langCode;
+        }
+
+        return (new Collection([$headingRow]))->downloadExcel('events.xlsx');
+    }
+
+    public function deleteAll()
+    {
+        Event::query()->delete();
+        toast(trans('admin.events').' '.trans('admin.deleted').' '.trans('admin.successfully'),'success');
 
         return back();
     }
