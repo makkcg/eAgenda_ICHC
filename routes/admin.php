@@ -53,4 +53,6 @@ Route::middleware('auth:admin')->group(function () {
     Route::get('/events/template', [EventController::class, 'downloadTemplate'])->name('events.template')->middleware('role_or_permission:super-admin|events');
     Route::delete('/events/delete-all', [EventController::class, 'deleteAll'])->name('events.delete-all')->middleware('role_or_permission:super-admin|events');
     Route::resource('/events', EventController::class)->except('show')->middleware('role_or_permission:super-admin|events');
+
+    Route::resource('/visualInformation', VisualInformationController::class)->except('show')->middleware('role_or_permission:super-admin|visual_information');
 });

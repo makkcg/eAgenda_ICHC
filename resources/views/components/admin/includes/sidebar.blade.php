@@ -166,6 +166,31 @@
                         </ul>
                     </li>
                 @endif
+                @if(auth()->user()->hasRole('super-admin') || auth()->user()->can('visual_information'))
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="fas fa-photo-video mr-2"></i>
+                            <p>
+                                {{ __('admin.visual_information') }}
+                                <i class="fas fa-angle-left right"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{{ route('admin.visualInformation.index') }}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>{{ __('admin.visual_information') }}</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ route('admin.visualInformation.create') }}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>{{ __('admin.add') .' '. __('admin.visual_information') }}</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                @endif
                 @if(auth()->user()->hasRole('super-admin') || auth()->user()->can('events'))
                     <li class="nav-item">
                         <a href="#" class="nav-link">

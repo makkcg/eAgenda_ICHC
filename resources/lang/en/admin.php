@@ -56,6 +56,8 @@ return [
     'template' => 'Template',
     'color' => 'Color',
     'date' => 'Date',
+    'icon' => 'Icon',
+    'asset' => 'Asset',
 
     'settings' => 'Settings',
     'profile' => 'Profile',
@@ -78,6 +80,7 @@ return [
     'country' => 'Country',
     'countries' => 'Countries',
     'information' => 'Information',
+    'visual_information' => 'Visual Information',
     'information_bank' => 'Information Bank',
     'some_information' => 'Some Information',
     'event' => 'Event',
