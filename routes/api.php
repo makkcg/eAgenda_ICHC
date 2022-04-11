@@ -80,6 +80,7 @@ Route::group(['middleware' => 'auth:sanctum', 'prefix' => 'user'], function () {
 });
 
 Route::get('/information/random', InformationController::class);
+Route::get('/visualInformation/random', VisualInformationController::class);
 
 Route::group(['middleware' => 'auth:sanctum', 'prefix' => 'personal-events'], function () {
     Route::get('/', [PersonalEventController::class, 'index']);
