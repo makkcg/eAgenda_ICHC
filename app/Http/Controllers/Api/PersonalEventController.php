@@ -11,7 +11,7 @@ use App\Traits\ApiResponseTrait;
 use Illuminate\Http\Request;
 
 /**
- * @group Notes
+ * @group Personal Events
  */
 class PersonalEventController extends Controller
 {

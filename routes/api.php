@@ -69,7 +69,7 @@ Route::group(['prefix' => 'news'], function () {
 
 Route::group(['middleware' => 'auth:sanctum', 'prefix' => 'calenders'], function () {
     Route::get('/', [CalenderController::class, 'index']);
-    Route::post('/{calender}', [CalenderController::class, 'show']);
+    Route::get('/{calender}', [CalenderController::class, 'show']);
 });
 
 Route::get('/countries', CountryController::class);
@@ -88,3 +88,5 @@ Route::group(['middleware' => 'auth:sanctum', 'prefix' => 'personal-events'], fu
     Route::post('/{personalEvent}', [PersonalEventController::class, 'update']);
     Route::delete('/{personalEvent}', [PersonalEventController::class, 'destroy']);
 });
+
+Route::get('/events', [EventController::class, 'index']);

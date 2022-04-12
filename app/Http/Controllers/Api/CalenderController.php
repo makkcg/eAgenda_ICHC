@@ -5,12 +5,14 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\ShowCalenderRequest;
 use App\Http\Resources\CalenderResource;
+use App\Http\Resources\EventResource;
 use App\Http\Resources\NoteResource;
 use App\Http\Resources\PersonalEventResource;
 use App\Http\Resources\TaskResource;
 use App\Models\Calender;
 use App\Models\PersonalEvent;
 use App\Repositories\Api\CalenderRepository;
+use App\Repositories\Api\EventRepository;
 use App\Traits\ApiResponseTrait;
 
 /**
@@ -20,11 +22,12 @@ class CalenderController extends Controller
 {
     use ApiResponseTrait;
 
-    private $calenderRepository;
+    private $calenderRepository, $eventRepository;
 
-    public function __construct(CalenderRepository $calenderRepository)
+    public function __construct(CalenderRepository $calenderRepository, EventRepository $eventRepository)
     {
         $this->calenderRepository = $calenderRepository;
+        $this->eventRepository = $eventRepository;
     }
 
     /**
@@ -57,6 +60,7 @@ class CalenderController extends Controller
             'tasks' => TaskResource::collection($this->calenderRepository->getTasks($calender, $request->input('year'), $request->input('month'))),
             'notes' => NoteResource::collection($this->calenderRepository->getNotes($calender, $request->input('year'), $request->input('month'))),
             'personalEvents' => PersonalEventResource::collection($this->calenderRepository->getPersonalEvents($calender, $request->input('year'), $request->input('month'))),
+            'events' => EventResource::collection($this->eventRepository->events($request->input('year'), $request->input('month'))),
         ]);
     }
 }
