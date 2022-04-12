@@ -6,8 +6,10 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\ShowCalenderRequest;
 use App\Http\Resources\CalenderResource;
 use App\Http\Resources\NoteResource;
+use App\Http\Resources\PersonalEventResource;
 use App\Http\Resources\TaskResource;
 use App\Models\Calender;
+use App\Models\PersonalEvent;
 use App\Repositories\Api\CalenderRepository;
 use App\Traits\ApiResponseTrait;
 
@@ -54,6 +56,7 @@ class CalenderController extends Controller
             'color' => $calender->color,
             'tasks' => TaskResource::collection($this->calenderRepository->getTasks($calender, $request->input('year'), $request->input('month'))),
             'notes' => NoteResource::collection($this->calenderRepository->getNotes($calender, $request->input('year'), $request->input('month'))),
+            'personalEvents' => PersonalEventResource::collection($this->calenderRepository->getPersonalEvents($calender, $request->input('year'), $request->input('month'))),
         ]);
     }
 }
