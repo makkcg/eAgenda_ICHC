@@ -19,11 +19,11 @@ class PageSeeder extends Seeder
                 'slug' => 'about',
                 'en' => [
                     'title' => 'Title in English',
-                    'body' => 'Body in English',
+                    'body' => "<p>Body in English</p>",
                 ],
                 'ar' => [
                     'title' => 'Title in Arabic',
-                    'body' => 'Body in Arabic',
+                    'body' => "<p>Body in Arabic</p>",
                 ],
             ]);
         }
@@ -33,11 +33,11 @@ class PageSeeder extends Seeder
                 'slug' => 'contact',
                 'en' => [
                     'title' => 'Title in English',
-                    'body' => 'Body in English',
+                    'body' => "<p>Body in English</p>",
                 ],
                 'ar' => [
                     'title' => 'Title in Arabic',
-                    'body' => 'Body in Arabic',
+                    'body' => "<p>Body in Arabic</p>",
                 ],
             ]);
         }
@@ -47,11 +47,11 @@ class PageSeeder extends Seeder
                 'slug' => 'privacy',
                 'en' => [
                     'title' => 'Title in English',
-                    'body' => 'Body in English',
+                    'body' => "<p>Body in English</p>",
                 ],
                 'ar' => [
                     'title' => 'Title in Arabic',
-                    'body' => 'Body in Arabic',
+                    'body' => "<p>Body in Arabic</p>",
                 ],
             ]);
         }
