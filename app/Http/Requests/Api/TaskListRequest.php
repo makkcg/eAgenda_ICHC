@@ -26,7 +26,7 @@ class TaskListRequest extends FormRequest
         return [
             'name' => 'required|string|max:64',
             'color' => 'required|regex:/^#[a-f0-9]{6}$/i',
-            'calender' => 'required|exists:calenders,id',
+            'calender_id' => 'required|exists:calenders,id',
         ];
     }
 }
