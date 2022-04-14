@@ -25,7 +25,7 @@ class TaskResource extends JsonResource
             'notes' => $this->notes,
             'files' => FileResource::collection($this->files),
             'tags' => TagResource::collection($this->tags),
-            'created_at' => $this->created_at->format('Y-m-d H:i:s'),
+            'created_at' => $this->created_at,
         ];
     }
 }
