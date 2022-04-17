@@ -13,12 +13,12 @@ class EventRepository
     {
         return Event::query()
             ->when($year, function ($q) use ($year) {
-                return $q->whereYear('date', $year);
+                return $q->whereYear('start_date', $year)->orWhereYear('end_date', $year);
             })
             ->when($month, function ($q) use ($month) {
-                return $q->whereMonth('date', $month);
+                return $q->whereMonth('start_date', $month)->orWhereMonth('end_date', $month);
             })
-            ->orderByDesc('date')
+            ->orderByDesc('start_date')
             ->get();
     }
 }
