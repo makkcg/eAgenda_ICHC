@@ -56,10 +56,10 @@ class CalenderRepository
             ->where('user_id', auth()->user()->id)
             ->where('calender_id', $calender->id)
             ->when($year, function ($q) use ($year) {
-                return $q->whereYear('created_at', $year);
+                return $q->whereYear('start_date', $year)->orWhereYear('end_date', $year);
             })
             ->when($month, function ($q) use ($month) {
-                return $q->whereMonth('created_at', $month);
+                return $q->whereMonth('start_date', $month)->orWhereMonth('end_date', $month);
             })
             ->get();
     }
