@@ -21,11 +21,13 @@ class PersonalEventResource extends JsonResource
 
             'title' => $this->title,
             'color' => $this->color,
+            'description' => $this->description,
 
             'start_date' => $this->start_date,
             'end_date' => $this->end_date,
             'start_time' => $this->start_time,
             'end_time' => $this->end_time,
+            'all_day' => $this->all_day,
 
             'repeat_type' => $this->repeat_type,
             'repeat_every_type' => $this->repeat_every_type,

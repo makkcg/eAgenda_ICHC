@@ -28,10 +28,14 @@ class CreatePersonalEventsTable extends Migration
 
             $table->string('title');
             $table->string('color');
+            $table->text('description')->nullable();
+
             $table->date('start_date');
             $table->time('start_time');
             $table->date('end_date')->nullable();
             $table->time('end_time')->nullable();
+            $table->time('all_day')->default(0);
+
             $table->tinyInteger('repeat_type')->default(0);
             $table->tinyInteger('repeat_every_type')->nullable();
             $table->tinyInteger('repeat_every')->nullable();
