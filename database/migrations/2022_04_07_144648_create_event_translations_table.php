@@ -23,6 +23,7 @@ class CreateEventTranslationsTable extends Migration
 
             $table->string('locale')->index();
             $table->string('title');
+            $table->text('body')->nullable();
 
             $table->unique(['event_id', 'locale']);
         });

@@ -90,8 +90,11 @@ final class EventsTable extends PowerGridComponent
         return PowerGrid::eloquent()
             ->addColumn('id')
             ->addColumn('title')
-            ->addColumn('date_formatted', function(Event $model) {
-                return Carbon::parse($model->date)->format('d/m/Y');
+            ->addColumn('start_date_formatted', function(Event $model) {
+                return Carbon::parse($model->start_date)->format('d/m/Y');
+            })
+            ->addColumn('end_date_formatted', function(Event $model) {
+                return Carbon::parse($model->end_date)->format('d/m/Y');
             })
             ->addColumn('created_at_formatted', function(Event $model) {
                 return Carbon::parse($model->created_at)->format('d/m/Y H:i:s');
@@ -128,11 +131,18 @@ final class EventsTable extends PowerGridComponent
                 ->makeInputText(),
 
             Column::add()
-                ->title('DATE')
-                ->field('date_formatted', 'date')
+                ->title('START DATE')
+                ->field('start_date_formatted', 'events.start_date')
                 ->searchable()
                 ->sortable()
-                ->makeInputDatePicker('date'),
+                ->makeInputDatePicker('events.start_date'),
+
+            Column::add()
+                ->title('END DATE')
+                ->field('end_date_formatted', 'events.end_date')
+                ->searchable()
+                ->sortable()
+                ->makeInputDatePicker('events.end_date'),
 
             Column::add()
                 ->title(trans('admin.created_at'))

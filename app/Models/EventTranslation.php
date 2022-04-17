@@ -13,5 +13,6 @@ class EventTranslation extends Model
 
     protected $fillable = [
         'title',
+        'body',
     ];
 }

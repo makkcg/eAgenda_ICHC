@@ -13,10 +13,14 @@ class Event extends Model implements TranslatableContract
 
     public $translatedAttributes = [
         'title',
+        'body',
     ];
 
     protected $fillable = [
         'color',
-        'date',
+        'start_date',
+        'end_date',
+        'start_time',
+        'end_time',
     ];
 }

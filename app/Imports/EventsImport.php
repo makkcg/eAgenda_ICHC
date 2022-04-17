@@ -19,6 +19,7 @@ class EventsImport implements ToModel, WithValidation, WithHeadingRow
         foreach (getActiveLanguages()->pluck('code') as $langCode) {
             $row[$langCode] = [
                 'title' => $row['title_'.$langCode] ?? $row['title_en'],
+                'body' => $row['body_'.$langCode] ?? $row['body_en'],
             ];
         }
 
@@ -29,8 +30,12 @@ class EventsImport implements ToModel, WithValidation, WithHeadingRow
     {
         return [
             'color' => 'required|string||regex:/^#[a-f0-9]{6}$/i',
-            'date' => 'required|date_format:Y/m/d',
+            'start_date' => 'required|date_format:Y/m/d',
+            'start_time' => 'required|date_format:H:i',
+            'end_date' => 'required|date_format:Y/m/d',
+            'end_time' => 'required|date_format:H:i',
             'title_en' => 'required|string|max:255',
+            'body_en' => 'required|string',
         ];
     }
 }

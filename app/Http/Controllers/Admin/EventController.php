@@ -66,11 +66,15 @@ class EventController extends Controller
     {
         $headingRow = [
             'color',
-            'date',
+            'start_date',
+            'start_time',
+            'end_date',
+            'end_time',
         ];
 
         foreach (getActiveLanguages()->pluck('code') as $langCode) {
             $headingRow[] = 'title_'.$langCode;
+            $headingRow[] = 'body_'.$langCode;
         }
 
         return (new Collection([$headingRow]))->downloadExcel('events.xlsx');

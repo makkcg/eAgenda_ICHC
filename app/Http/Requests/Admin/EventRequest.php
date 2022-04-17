@@ -25,8 +25,12 @@ class EventRequest extends FormRequest
     {
         return [
             'lang.*.title' => 'required|string|max:255',
+            'lang.*.body' => 'required|string',
             'color' => 'required|string|regex:/^#[a-f0-9]{6}$/i',
-            'date' => 'required|date_format:Y-m-d',
+            'start_date' => 'required|date_format:Y-m-d',
+            'end_date' => 'required|date_format:Y-m-d',
+            'start_time' => 'required|date_format:H:i',
+            'end_time' => 'required|date_format:H:i',
         ];
     }
 }

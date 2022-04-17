@@ -56,6 +56,9 @@ return [
     'template' => 'Template',
     'color' => 'Color',
     'date' => 'Date',
+    'time' => 'Time',
+    'start' => 'Start',
+    'end' => 'End',
     'icon' => 'Icon',
     'asset' => 'Asset',
 
