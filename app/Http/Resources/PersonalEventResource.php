@@ -18,11 +18,23 @@ class PersonalEventResource extends JsonResource
             'id' => $this->id,
             'user_id' => $this->user_id,
             'calender_id' => $this->calender_id,
+
             'title' => $this->title,
             'color' => $this->color,
+
+            'start_date' => $this->start_date,
+            'end_date' => $this->end_date,
+            'start_time' => $this->start_time,
+            'end_time' => $this->end_time,
+
+            'repeat_type' => $this->repeat_type,
+            'repeat_every_type' => $this->repeat_every_type,
+            'repeat_every' => $this->repeat_every,
+            'repeat_end_type' => $this->repeat_end_type,
+            'repeat_end' => $this->repeat_end,
+
             'reminder' => $this->reminder,
-            'reminder_timestamp' => $this->reminder_timestamp,
-            'repetition' => $this->repetition,
+
             'created_at' => $this->created_at,
         ];
     }

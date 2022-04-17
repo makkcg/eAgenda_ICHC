@@ -27,9 +27,19 @@ class PersonalEventRequest extends FormRequest
             'calender_id' => 'required|exists:calenders,id',
             'title' => 'required|string|max:255',
             'color' => 'required|regex:/^#[a-f0-9]{6}$/i',
-            'reminder' => 'nullable|in:0,1',
-            'reminder_timestamp' => 'required_with:reminder|date_format:Y-m-d H:i:s',
-            'repetition' => 'required_with:reminder|numeric',
+
+            'start_date' => 'required|date_format:Y-m-d',
+            'end_date' => 'required|date_format:Y-m-d',
+            'start_time' => 'required|date_format:H:i',
+            'end_time' => 'required|date_format:H:i',
+
+            'repeat_type' => 'required|numeric',
+            'repeat_every_type' => 'nullable|numeric',
+            'repeat_every' => 'nullable|numeric',
+            'repeat_end_type' => 'nullable|numeric',
+            'repeat_end' => 'nullable|string|max:255',
+
+            'reminder' => 'required|integer',
         ];
     }
 }

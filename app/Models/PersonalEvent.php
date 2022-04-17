@@ -14,8 +14,15 @@ class PersonalEvent extends Model
         'calender_id',
         'title',
         'color',
+        'start_date',
+        'start_time',
+        'end_date',
+        'end_time',
+        'repeat_type',
+        'repeat_every_type',
+        'repeat_every',
+        'repeat_end_type',
+        'repeat_end',
         'reminder',
-        'reminder_timestamp',
-        'repetition',
     ];
 }
