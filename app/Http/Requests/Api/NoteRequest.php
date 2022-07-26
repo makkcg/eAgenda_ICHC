@@ -33,6 +33,8 @@ class NoteRequest extends FormRequest
             'reminder_timestamp' => 'required_with:reminder|date_format:Y-m-d H:i:s',
             'repetition' => 'required_with:reminder|in:' . implode(',',array_keys(AlarmRepetition::getList())),
             'in_calender' => 'required|in:0,1',
+            'files' => 'nullable|array',
+            'files.*' => 'required|file|max:4096'
         ];
     }
 }

@@ -24,6 +24,7 @@ class NoteResource extends JsonResource
             'reminder_timestamp' => $this->reminder_timestamp,
             'repetition' => $this->repetition,
             'in_calender' => $this->in_calender,
+            'files' => FileResource::collection($this->files),
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ];

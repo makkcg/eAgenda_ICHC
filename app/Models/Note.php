@@ -20,4 +20,9 @@ class Note extends Model
         'repetition',
         'in_calender',
     ];
+
+    public function files()
+    {
+        return $this->morphMany(File::class, 'fileable');
+    }
 }

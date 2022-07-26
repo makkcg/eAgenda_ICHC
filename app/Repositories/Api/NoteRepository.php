@@ -4,16 +4,21 @@ namespace App\Repositories\Api;
 
 use App\Models\Note;
 use App\Traits\ApiResponseTrait;
+use App\Traits\FileTrait;
 use Illuminate\Http\Exceptions\HttpResponseException;
 
 class NoteRepository
 {
-    use ApiResponseTrait;
+    use ApiResponseTrait, FileTrait;
 
     public function create($data)
     {
         $data['user_id'] = auth()->user()->id;
         $note = Note::create($data);
+
+        if (!empty($data['files'])) {
+            self::uploadFiles($data['files'], $note, 'notes/');
+        }
 
         return $note;
     }
@@ -23,12 +28,18 @@ class NoteRepository
         $this->checkIfNoteOwner($note);
         $note->update($data);
 
+        if (!empty($data['files'])) {
+            self::deleteFiles($note->files());
+            self::uploadFiles($data['files'], $note, 'notes/');
+        }
+
         return $note;
     }
 
     public function delete($note)
     {
         $this->checkIfNoteOwner($note);
+        self::deleteFiles($note->files());
         $note->delete();
     }
 
